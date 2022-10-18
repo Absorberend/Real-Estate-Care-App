@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import {BrowserRouter, Routes, Route} from 'react-router-dom';
+import {HashRouter, Routes, Route} from 'react-router-dom';
 
 import './App.css';
 
@@ -98,7 +98,7 @@ function App() {
   
   return (
     <>
-      <BrowserRouter>
+      <HashRouter>
         {unAuthLogIn && authLogIn && <>
           <header className="app__header">
             <TopBar onSideMenuToggleClick={handleSideMenuToggleClick} onSideMenuClose={handleSideMenuClose} loggedInUser={loggedInUser} />
@@ -126,7 +126,7 @@ function App() {
             <Route path="*" element={<ErrorPage />} />
           </Routes>
         </>}
-      </BrowserRouter>
+      </HashRouter>
     </>
   );
 }
