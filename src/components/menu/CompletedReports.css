@@ -52,6 +52,7 @@
     align-items: start;
     justify-content: space-evenly;
     background-color: white;
+    color: black;
     border: 1px solid black;
     border-radius: 5px;
     font-family: 'Quicksand', sans-serif;
