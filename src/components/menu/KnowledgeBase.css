@@ -1,0 +1,67 @@
+.knowledge__base__container {
+    inline-size: 100%;
+    overflow-wrap: break-word;
+    width: 100%;
+    padding: 1em 1em 5em 1em;
+    font-size: 1.2em;
+}
+
+.knowledge__base__container h2 {
+    text-align: center;
+    margin: 0;
+}
+
+.knowledge__base__button__container {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    max-width: 50em;
+    margin: 0 auto;
+    background-color: var(--footer-bg-color);
+    padding: 1em;
+    border-radius: 0.5em;
+    gap: 0.5em;
+}
+
+.knowledge__base__button__container h4 {
+    padding: 0;
+    margin: 0;
+}
+
+.knowledge__base__button {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+    background-color: white;
+    border: 1px solid black;
+    border-radius: 5px;
+    font-family: 'Quicksand', sans-serif;
+    font-weight: 600;
+    font-size: 0.6em;
+    cursor: pointer;
+}
+
+.knowledge__base__button__expanded {
+    background-color: rgba(20,27,31,0.2);
+    color: white;
+}
+
+.knowledge__base__overview__default__container {
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+}
+
+.knowledge__base__overview__default {
+    display: flex;
+    flex-direction: column;
+    padding: 1em;
+    border: 1px solid black;
+    border-radius: 0.5em;
+    background-color: white;
+}
+
+.knowledge__base__overview__default span {
+    font-weight: 600;
+}

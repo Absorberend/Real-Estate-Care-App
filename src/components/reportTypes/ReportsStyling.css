@@ -1,0 +1,124 @@
+/* Default report form styling */
+
+.reports__container__default {
+    display: flex;
+    height: 100%;
+    width: 100%;
+    flex-direction: column;
+    margin: 0;
+    padding: 1em 1em 5em 1em;
+    font-size: 1.2em;
+    font-weight: 500;
+}
+
+.reports__container__default input:focus,
+.reports__container__default textarea:focus,
+.reports__container__default select:focus { 
+    outline: none !important;
+    border-color: var(--footer-bg-color);
+}
+
+.reports__header__default {
+    padding-block-end: 1em;
+    margin: 0.25em auto;
+}
+
+.reports__inspection__form__default {
+    display: flex;
+    height: 100%;
+    width: 100%;
+    flex-direction: column;
+    gap: 2em;
+    max-width: 50em;
+    margin: 0 auto;
+}
+
+.reports__inspection__form__default span {
+    font-size: 0.75em;
+}
+
+.reports__button__default {
+    width: 15em;
+    padding: 0.1em;
+    border: 1px solid black;
+    border-radius: 5px;
+    background-color: var(--footer-bg-color);
+    box-shadow: 1px 1px 15px 1px rgba(0, 0, 0, 0.1);
+    color: white;
+    font-family: sans-serif;
+    font-weight: 400;
+    font-size: 1em;
+    display: flex;
+    justify-content: center;
+    align-self: center;
+    cursor: pointer;
+}
+
+.report__form__default {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    justify-content: space-between;
+}
+
+.report__form__location__default {
+    display: flex;
+    width: 100%;
+    max-width: 225px;
+    flex-direction: column;
+    gap: 1em;
+}
+
+.report__form__radio__default__container {
+    display: flex;
+    gap: 1.5em;
+}
+
+.report__form__radio__default {
+    display: flex;
+    gap: 0.25em;
+    align-items: center;
+    justify-content: center;
+}
+
+input::file-selector-button,
+::-webkit-file-upload-button {
+    background: var(--footer-bg-color);
+    color: white;
+    border: 1px solid black;
+    border-radius: 10px;
+    padding: 0.5em;
+    font-family: sans-serif;
+    font-weight: 600;
+    font-size: 1em;
+}
+
+.report__form__description__default {
+    display: flex;
+    flex-direction: column;
+    max-width: 350px;
+    gap: 0.5em;
+}
+
+.report__form__file__type__default {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5em;
+}
+
+.report__form__test__procedure__default {
+    display: flex;
+    flex-direction: column;
+    max-width: 350px;
+}
+
+.report__form__location__container__default {
+    display: flex;
+    height: 100%;
+    flex-direction: column;
+    gap: 0.75em;
+}
+
+.report__select__default {
+    min-width: 12.1em;
+}

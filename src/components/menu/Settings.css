@@ -1,0 +1,35 @@
+.settings__container {
+    padding: 1em 1em 5em 1em;
+    display: flex;
+    flex-direction: column;
+    font-size: 1.2em;
+}
+
+.settings__container h2 {
+    margin: 0;
+    margin-block-end: 0.5em;
+    text-align: center;
+}
+
+.settings__container h4 {
+    margin: 0;
+    max-width: 50em;
+    margin: 1em auto;
+}
+
+.settings__form {
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+    max-width: 50em;
+    margin: 0 auto;
+}
+
+.settings__form label {
+    font-weight: 600;
+}
+
+.settings__form span {
+    max-width: 15em;
+    margin: 0 auto;
+}

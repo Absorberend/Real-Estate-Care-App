@@ -1,0 +1,228 @@
+.completed__reports__back__button {
+    padding: 1em 1em 0 1em;
+    font-size: 1.2em;
+}
+
+.completed__reports__container {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25em;
+    width: 100%;
+    height: 100%;
+    max-width: 50em;
+    padding: 0 0.5em 5em 0.5em;
+    text-align: center;
+    font-size: 1.25em;
+    margin: 0 auto;
+}
+
+.completed__reports__button__container {
+    display: flex;
+    flex-direction: column;
+    padding: 0.5em;
+    background-color: rgba(0,170,162,0.75);
+    border-radius: 0.5em;
+    gap: 1em;
+}
+
+.completed__reports__container h2 {
+    margin: 0;
+}
+
+.completed__reports__legenda {
+    display: flex;
+    width: 85%;
+    padding: 0;
+    font-family: 'Quicksand', sans-serif;
+    justify-content: space-evenly;
+    font-weight: 600;
+    font-size: 0.75em;
+    text-align: start;
+    gap: 0.5em;
+}
+
+.completed__reports__button {
+    position: relative;
+    display: flex;
+    width: 100%;
+    height: 3.5em;
+    padding: 0.5em 1em;
+    gap: 0.5em;
+    text-align: start;
+    align-items: start;
+    justify-content: space-evenly;
+    background-color: white;
+    border: 1px solid black;
+    border-radius: 5px;
+    font-family: 'Quicksand', sans-serif;
+    font-weight: 600;
+    font-size: 0.55em;
+    cursor: pointer;
+    overflow: hidden;
+}
+
+.completed__reports__button span:nth-child(4),
+.completed__reports__button span:nth-child(3) {
+    overflow-wrap: break-word;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.completed__reports__button span:nth-child(5) {
+    max-width: 2em;
+}
+
+.completed__reports__loading__error__messages {
+    color: white;
+    font-weight: 600;
+    font-size: 1.2em;
+}
+
+.expanded__overview__button {
+    background-color: rgba(20,27,31,0.2);
+    color: white;
+}
+
+.completed__reports__button__icon {
+    position: absolute;
+    right: 1em;
+    top: 0.25em;
+}
+
+.completed__reports__button__icon__hidden {
+    visibility: hidden;
+}
+
+.completed__reports__overview__container {
+    display: flex;
+    position: relative;
+    max-width: 100%;
+    flex-direction: column;
+    margin-block-start: 0.5em;
+    padding: 0.5em;
+    border: 1px solid black;
+    border-radius: 5px;
+    font-size: 1em;
+    background-color: white;
+    gap: 0.5em;
+}
+
+.completed__reports__overview__expanded__reports {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    text-align: start;
+    max-width: 100%;
+}
+
+.completed__reports__button__container div span {
+    inline-size: 100%;
+    overflow-wrap: break-word;
+}
+
+.completed__reports__overview__container div span:first-child {
+    font-weight: 600;
+}
+
+.completed__reports__overview__container img {
+    max-width: 100%;
+    border: 1px solid black;
+    border-radius: 5px;
+}
+
+.overview__button__container {
+    display: flex;
+    flex-direction: row !important;
+    justify-content: flex-end;
+    gap: 0.5em;
+}
+
+.overview__delete__button {
+    display: flex;
+    align-items: center;
+    gap: 0.5em;
+    width: 8em;
+    height: 4em;
+    padding: 0.5em;
+    background-color: red;
+    border: 1px solid black;
+    border-radius: 5px;
+    color: white;
+    font-family: sans-serif;
+    font-weight: 400;
+    font-size: 0.6em;
+    cursor: pointer;
+}
+
+.overview__delete__button img {
+    filter: invert(100%);
+}
+
+.overview__edit__button {
+    display: flex;
+    align-items: center;
+    gap: 0.5em;
+    width: 8em;
+    height: 4em;
+    padding: 0.5em;
+    background-color: var(--footer-bg-color);
+    border: 1px solid black;
+    border-radius: 5px;
+    color: white;
+    font-family: sans-serif;
+    font-weight: 400;
+    font-size: 0.6em;
+    cursor: pointer;
+}
+
+.overview__edit__button img {
+    filter: invert(100%);
+}
+
+/* Delete button modal */
+.overview__container__delete__modal__wrapper {
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    bottom: 5em;
+    width: 100%;
+    left: 0;
+    right: 0;
+}
+
+.overview__container__delete__modal {
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    width: 18em;
+    border: 1px solid black;
+    border-radius: 5px;
+    padding: 1em;
+    gap: 1em;
+    font-size: 0.8em;
+}
+
+.overview__container__delete__modal__buttons__wrapper {
+    display: flex;
+    flex-direction: row;
+    gap: 1em;
+}
+
+.overview__container__delete__modal__button {
+    width: 50%;
+    color: white;
+    background-color: var(--footer-bg-color);
+    padding: 0.5em;
+    border: 1px solid black;
+    border-radius: 5px;
+    font-family: 'Quicksand', sans-serif;
+    font-weight: 600;
+    font-size: 0.55em;
+    cursor: pointer;
+    box-shadow: 1px 1px 15px 1px rgba(0, 0, 0, 0.1);
+}
+
+.overview__container__delete__modal__buttons__wrapper button:first-child {
+    background-color: red;
+}

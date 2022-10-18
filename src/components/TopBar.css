@@ -1,0 +1,60 @@
+/* App logo */
+.top__bar__logo__container {
+    display: flex;
+    height: 100%;
+    text-decoration: none;
+    color: white;
+    cursor: pointer;
+    padding: 0 0.5em;
+}
+
+.top__bar__logo__image {
+    display: flex;
+    max-width: 3em;
+    max-height: 3em;
+    align-self: center;
+    justify-self: center;
+}
+
+.top__bar__logo__text__wrapper {
+    display: flex;
+    height: 100%;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    padding: 0 0.5em;
+}
+
+.top__bar__logo__text {
+    font-family: 'Rajdhani', sans-serif;
+    font-weight: 400;
+    font-size: 1.25rem;
+}
+
+.top__bar__logo__sub__text {
+    font-family: 'Quicksand', sans-serif;
+    font-size: 0.6em;
+    font-weight: 300;
+    letter-spacing: 0.105rem;
+}
+
+/* App profile */
+.top__bar__profile__container {
+    display: flex;
+    width: 5em;
+    height: 100%;
+    padding: 0 0.5em;
+    margin: 0;
+    border: none;
+    background: inherit;
+    align-items: center;
+    justify-content: center;
+}
+
+.top__bar__profile__img {
+    border-radius: 50%;
+    width: 100%;
+    height: 4.2em;
+    outline: 2px solid var(--footer-bg-color);   
+}
+
