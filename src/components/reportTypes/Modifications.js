@@ -41,7 +41,7 @@ export default function Modifications({category, onReportsCategoryReset, filtere
   }, [editReport])
 
   useEffect(() => {
-    if (streetName, postalCode, city) {
+    if (streetName && postalCode && city) {
       locationArr.push(streetName, postalCode, city);
       setLocation(locationArr.join(", "));
     }

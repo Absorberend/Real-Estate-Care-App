@@ -51,7 +51,7 @@ export default function Settings({loggedInUser, onLogout}) {
 
       <form  onSubmit={handleDamagesSubmit} className="settings__form">
 
-        <input hidden type="text" name="username" autoComplete="username" value={loggedInUser[0].loginName} onChange={(e) => setUsername(e.target.value)} />
+        <input hidden type="text" name="username" autoComplete="username" value={username} onChange={(e) => setUsername(e.target.value)} />
 
         <div>
           <label>Oude wachtwoord:</label>

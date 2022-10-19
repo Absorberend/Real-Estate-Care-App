@@ -40,7 +40,7 @@ export default function Maintenance({category, onReportsCategoryReset, filteredR
   }, [editReport])
 
   useEffect(() => {
-    if (streetName, postalCode, city) {
+    if (streetName && postalCode && city) {
       locationArr.push(streetName, postalCode, city);
       setLocation(locationArr.join(", "));
     }

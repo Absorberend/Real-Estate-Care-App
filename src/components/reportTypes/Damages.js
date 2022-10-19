@@ -43,7 +43,7 @@ export default function Damages({category, onReportsCategoryReset, filteredRepor
   }, [editReport])
 
   useEffect(() => {
-    if (streetName, postalCode, city) {
+    if (streetName && postalCode && city) {
       locationArr.push(streetName, postalCode, city);
       setLocation(locationArr.join(", "));
     }

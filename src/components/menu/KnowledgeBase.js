@@ -18,11 +18,11 @@ export default function KnowledgeBase({data}) {
   const filteredElectricity = filteredInstallations.filter(report => report.installationType === 'elektra');
   const filteredSecurity = filteredInstallations.filter(report => report.installationType === 'beveiliging');
 
-  const filteredCoolingEL = filteredCooling.map(report => <div key={report.id} className="knowledge__base__overview__default"><span>Test prodecure:</span><a href={report.testProcedure} target="_blank">{report.testProcedure}</a></div>)
-  const filteredHeatingEL = filteredHeating.map(report => <div key={report.id} className="knowledge__base__overview__default"><span>Test prodecure:</span><a href={report.testProcedure} target="_blank">{report.testProcedure}</a></div>)
-  const filteredAirEL = filteredAir.map(report => <div key={report.id} className="knowledge__base__overview__default"><span>Test prodecure:</span><a href={report.testProcedure} target="_blank">{report.testProcedure}</a></div>)
-  const filteredElectricityEL = filteredElectricity.map(report => <div key={report.id} className="knowledge__base__overview__default"><span>Test prodecure:</span><a href={report.testProcedure} target="_blank">{report.testProcedure}</a></div>)
-  const filteredSecurityEL = filteredSecurity.map(report => <div key={report.id} className="knowledge__base__overview__default"><span>Test prodecure:</span><a href={report.testProcedure} target="_blank">{report.testProcedure}</a></div>)
+  const filteredCoolingEL = filteredCooling.map(report => <div key={report.id} className="knowledge__base__overview__default"><span>Test prodecure:</span><a href={report.testProcedure} target="_blank" rel="noopener noreferrer">{report.testProcedure}</a></div>)
+  const filteredHeatingEL = filteredHeating.map(report => <div key={report.id} className="knowledge__base__overview__default"><span>Test prodecure:</span><a href={report.testProcedure} target="_blank" rel="noopener noreferrer">{report.testProcedure}</a></div>)
+  const filteredAirEL = filteredAir.map(report => <div key={report.id} className="knowledge__base__overview__default"><span>Test prodecure:</span><a href={report.testProcedure} target="_blank" rel="noopener noreferrer">{report.testProcedure}</a></div>)
+  const filteredElectricityEL = filteredElectricity.map(report => <div key={report.id} className="knowledge__base__overview__default"><span>Test prodecure:</span><a href={report.testProcedure} target="_blank" rel="noopener noreferrer">{report.testProcedure}</a></div>)
+  const filteredSecurityEL = filteredSecurity.map(report => <div key={report.id} className="knowledge__base__overview__default"><span>Test prodecure:</span><a href={report.testProcedure} target="_blank" rel="noopener noreferrer">{report.testProcedure}</a></div>)
 
   const handleExpandTypeClick = (e) => {
     if (expandType === e.target.innerText.toLowerCase().trim()) {

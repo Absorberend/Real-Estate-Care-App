@@ -39,7 +39,7 @@ export default function useBaseImg() {
 
       const uploadImage = async (event) => {
         const file = event.target.files[0];
-        const base64test = await base64(file);
+        await base64(file);
       };
     
     

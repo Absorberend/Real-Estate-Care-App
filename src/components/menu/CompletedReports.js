@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react'
+import React, {useState} from 'react'
 import { useLocation, useNavigate } from 'react-router-dom';
 
 import "./CompletedReports.css";
@@ -113,7 +113,7 @@ export default function CompletedReports({data}) {
         </div>}
         {report?.testProcedure && <div className="completed__reports__overview__expanded__reports">
           <span>Testprocedure:</span>
-          <span>{<a href={report.testProcedure} target="_blank">{report.testProcedure}</a>}</span> 
+          <span>{<a href={report.testProcedure} target="_blank" rel="noopener noreferrer">{report.testProcedure}</a>}</span> 
         </div>}
         {report?.costIndication && <div className="completed__reports__overview__expanded__reports">
           <span>Kostenindicatie:</span>
