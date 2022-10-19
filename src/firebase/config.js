@@ -16,7 +16,7 @@ firebase.initializeApp(firebaseConfig);
 // init services
 const projectFirestore = firebase.firestore();
 
-projectFirestore.enablePersistence({synchronizeTabs:true})
+projectFirestore.enablePersistence({synchronizeTabs:true, experimentalTabSynchronization:true})
 .catch(err => {
   if(err.code === 'failed-precondition') {
     //probably multiple tabs open at once.
