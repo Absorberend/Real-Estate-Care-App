@@ -29,7 +29,7 @@ function App() {
   const [authLogIn, setAuthLogIn] = useState(localStorage.getItem("authLogin") === "true" ? true : false);
   const [loginFailed, setLoginFailed] = useState(false);
   const {data, users} = useFetch();
-  const isKeyboardOpen = useDetectKeyboardOpen(300, null);
+  const isKeyboardOpen = useDetectKeyboardOpen(1000, null);
 
   useEffect(() => {
     localStorage.setItem("loggedInUser", JSON.stringify(loggedInUser)); 
