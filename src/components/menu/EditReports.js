@@ -12,11 +12,10 @@ export default function EditReports({data}) {
     const [editReport, setEditReport] = useState(false);
     const [filteredReport, setFilteredReport] = useState({});
     let { reportId } = useParams();
-    let filteredReportEL = [];
 
     useEffect(() => {
         if (data) {
-            filteredReportEL = data.filter(report => {
+            let filteredReportEL = data.filter(report => {
                 return report.id === reportId
             })
             setEditReport(true);
