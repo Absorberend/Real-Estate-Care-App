@@ -16,7 +16,7 @@ export default function useBaseImg() {
 
             imgElement.onload = function (e) {
               const canvas = document.createElement("canvas");
-              const MAX_WIDTH = 600;
+              const MAX_WIDTH = 400;
         
               const scaleSize = MAX_WIDTH / e.target.width;
               canvas.width = MAX_WIDTH;
