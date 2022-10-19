@@ -1,5 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import {HashRouter, Routes, Route} from 'react-router-dom';
+import useDetectKeyboardOpen from "use-detect-keyboard-open";
 
 import './App.css';
 
@@ -28,6 +29,7 @@ function App() {
   const [authLogIn, setAuthLogIn] = useState(localStorage.getItem("authLogin") === "true" ? true : false);
   const [loginFailed, setLoginFailed] = useState(false);
   const {data, users} = useFetch();
+  const isKeyboardOpen = useDetectKeyboardOpen();
 
   useEffect(() => {
     localStorage.setItem("loggedInUser", JSON.stringify(loggedInUser)); 
@@ -95,7 +97,7 @@ function App() {
     authValue = Math.floor(Math.random() * 1000000).toString();
   }
 
-  
+
   return (
     <>
       <HashRouter>
@@ -116,9 +118,9 @@ function App() {
               <Route path="*" element={<ErrorPage unAuthLogIn={unAuthLogIn} authLogIn={authLogIn} />}  />    
             </Routes>
           </main>
-          <footer className="app__footer">
+          {isKeyboardOpen ? "" : <footer className="app__footer">
             <NavBar onSideMenuClose={handleSideMenuClose} />
-          </footer>
+          </footer>}
         </>}
         {!authLogIn && <>
           <Routes>
