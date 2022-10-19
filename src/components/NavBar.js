@@ -20,7 +20,7 @@ export default function NavBar({onSideMenuClose}) {
                 alt="report icon" 
                 />
                 <span className="nav__footer__link__hidden">
-                Assigned Report
+                Assigned Reports
                 </span>
             </NavLink>
 

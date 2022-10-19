@@ -10,7 +10,6 @@ import CompletedReports from "./components/menu/CompletedReports.js";
 import AddReports from "./components/menu/AssignedReports.js";
 import KnowledgeBase from "./components/menu/KnowledgeBase.js";
 import Settings from "./components/menu/Settings.js";
-import Profile from "./components/menu/Profile.js";
 import LoginPage from './components/LoginPage';
 import ErrorPage from './components/ErrorPage';
 import TopBar from "./components/TopBar.js";
@@ -29,7 +28,7 @@ function App() {
   const [authLogIn, setAuthLogIn] = useState(localStorage.getItem("authLogin") === "true" ? true : false);
   const [loginFailed, setLoginFailed] = useState(false);
   const {data, users} = useFetch();
-  const isKeyboardOpen = useDetectKeyboardOpen(1000, null);
+  const isKeyboardOpen = useDetectKeyboardOpen(300, null);
 
   useEffect(() => {
     localStorage.setItem("loggedInUser", JSON.stringify(loggedInUser)); 
@@ -45,20 +44,6 @@ function App() {
     localStorage.setItem("authLogin", authLogIn); 
     
   }, [authLogIn])
-
-  const handleOutsideClick = () => {
-    setOutsideClick(prevOutsideClick => !prevOutsideClick);
-  }
-
-  const handleSideMenuToggleClick = () => {
-    if (!outsideClick) {
-      setSideMenuToggle(prevSideMenuToggle => !prevSideMenuToggle);
-    }
-  }
-
-  const handleSideMenuClose = () => {
-    setSideMenuToggle(false);
-  }
 
   const handleLoginSubmit = (e) => {
     e.preventDefault();
@@ -97,6 +82,20 @@ function App() {
     authValue = Math.floor(Math.random() * 1000000).toString();
   }
 
+  const handleOutsideClick = () => {
+    setOutsideClick(prevOutsideClick => !prevOutsideClick);
+  }
+
+  const handleSideMenuToggleClick = () => {
+    if (!outsideClick) {
+      setSideMenuToggle(prevSideMenuToggle => !prevSideMenuToggle);
+    }
+  }
+
+  const handleSideMenuClose = () => {
+    setSideMenuToggle(false);
+  }
+
   const handleCategoryDisplay = (category) => {
     if (category === 'damages') {
       return 'Schade';
@@ -124,7 +123,6 @@ function App() {
               <Route path="/CompletedReports" element={<CompletedReports data={data} onCategoryDisplay={handleCategoryDisplay} />}  />
               <Route path="/KnowledgeBase" element={<KnowledgeBase data={data} />}  />       
               <Route path="/Settings" element={<Settings loggedInUser={loggedInUser} onLogout={handleLogOut} />}  />
-              <Route path="/Profile" element={<Profile loggedInUser={loggedInUser} />}  />
               <Route path="/EditReports/:reportId" element={<EditReports data={data} />}  />           
               <Route path="*" element={<ErrorPage unAuthLogIn={unAuthLogIn} authLogIn={authLogIn} />}  />    
             </Routes>

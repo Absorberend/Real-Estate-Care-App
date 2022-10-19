@@ -1,5 +1,6 @@
 import React, {useEffect, useState} from 'react'
 import { useParams } from 'react-router-dom';
+import useFetch from '../../hooks/useFetch';
 
 import Damages from '../reportTypes/Damages';
 import Installations from '../reportTypes/Installations';
@@ -10,6 +11,8 @@ import ErrorPage from "../../components/ErrorPage.js";
 
 export default function EditReports({data}) {
     const [filteredReport, setFilteredReport] = useState({});
+    const {loading} = useFetch();
+
     let { reportId } = useParams();
 
     useEffect(() => {
@@ -28,7 +31,7 @@ export default function EditReports({data}) {
     {filteredReport?.category === "installations" && <Installations filteredReport={filteredReport} reportId={reportId} />}
     {filteredReport?.category === "maintenance" && <Maintenance filteredReport={filteredReport} reportId={reportId} />}
     {filteredReport?.category === "modifications" && <Modifications filteredReport={filteredReport} reportId={reportId} />}
-    {filteredReport?.category === undefined && <ErrorPage />}
+    {filteredReport?.id !== reportId && !loading && <ErrorPage />}
     </>
   )
 }

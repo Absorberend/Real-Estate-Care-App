@@ -2,12 +2,10 @@ import React, {useEffect, useState} from 'react'
 import useBaseImg from '../../hooks/useBaseImg';
 import useFetch from '../../hooks/useFetch';
 
-import BackButton from "../BackButton";
-import "./Profile.css";
+import "./Avatar.css";
 
 
-
-export default function Profile({loggedInUser}) {
+export default function Avatar({loggedInUser}) {
   const { uploadImage, srcEncoded } = useBaseImg();
   const { put } = useFetch();
   const [avatar, setAvatar] = useState("");
@@ -31,24 +29,20 @@ export default function Profile({loggedInUser}) {
       setSubmitted(true);
     }
   }
-      
-
 
   return (
-      <div className="profile__container">
-        <BackButton />
-        <h2>Profiel</h2>
-        <form className="profile__form" onSubmit={handleDamagesSubmit}>
-            <div className="report__form__file__type__default">
-            <label>Avatar wijzigen:</label>
+      <div className="avatar__container">
+        <form className="avatar__form" onSubmit={handleDamagesSubmit}>
+          <div className="report__form__file__type__default">
+            <label className="avatar__input__label">Avatar wijzigen:</label>
             <input type="file" accept="image/*" id="report__file__input" onChange={(e) => uploadImage(e)} />
           </div>
-          <div className="profile__avatar__wrapper">
-            <img src={srcEncoded ? avatar : loggedInUser[0].avatar} alt="personal avatar" className="profile__avatar"/>
+          <div className="avatar__avatar__wrapper">
+            <img src={srcEncoded ? avatar : loggedInUser[0].avatar} alt="personal avatar" className="avatar__avatar"/>
           </div>
-          <input type="submit" disabled={submitted} value="Wijziging doorvoeren" className="reports__button__default" />
+          <span className="avatar__user__message">{userMsg}</span>
+          <input type="submit" disabled={submitted} value="Avatar wijzigen" className="reports__button__default avatar__input__button" />
         </form>
-        <span>{userMsg}</span>
       </div>
   )
 }

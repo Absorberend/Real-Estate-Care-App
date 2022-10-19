@@ -28,7 +28,6 @@ export default function SideMenu({onSideMenuToggleClick, onOutsideClick, onLogOu
         </button>
         <div className="side__bar__links">
             <NavLink to="/Settings" onClick={onSideMenuToggleClick}>Settings</NavLink>
-            <NavLink to="/Profile"  onClick={onSideMenuToggleClick}>Profile</NavLink>
             <div>
                 <button onClick={() => {
                     onLogOut();

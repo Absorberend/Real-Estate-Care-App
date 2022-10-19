@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import useFetch from '../../hooks/useFetch';
 import BackButton from '../BackButton';
 import "./Settings.css";
+import Avatar from './Avatar';
 
 
 export default function Settings({loggedInUser, onLogout}) {
@@ -70,8 +71,9 @@ export default function Settings({loggedInUser, onLogout}) {
 
         <span>{userMsg}</span>
 
-        <input type="submit" value="Wijzigingen doorvoeren" disabled={passwordChanged} className="reports__button__default" />
+        <input type="submit" value="Wachtwoord wijzigen" disabled={passwordChanged} className="reports__button__default" />
       </form>
+      <Avatar loggedInUser={loggedInUser}/>
     </div>
   )
 }
