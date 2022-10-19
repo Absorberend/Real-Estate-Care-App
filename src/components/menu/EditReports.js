@@ -21,7 +21,7 @@ export default function EditReports({data}) {
             setEditReport(true);
             setFilteredReport(filteredReportEL[0]);
         }
-    }, [data])
+    }, [data, reportId])
 
     const handleEditStateClick = () => {
         setEditReport(prevEditReport => !prevEditReport);

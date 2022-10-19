@@ -39,7 +39,8 @@ export default function Damages({category, onReportsCategoryReset, filteredRepor
       setPictures(filteredReport.pictures);
       setEditOn(editReport);
     }
-
+    
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [editReport])
 
   useEffect(() => {
@@ -47,6 +48,8 @@ export default function Damages({category, onReportsCategoryReset, filteredRepor
       locationArr.push(streetName, postalCode, city);
       setLocation(locationArr.join(", "));
     }
+
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [streetName, postalCode, city])
 
   useEffect(() => {

@@ -41,6 +41,7 @@ export default function Installations({category, onReportsCategoryReset, filtere
       setEditOn(editReport);
     }
 
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [editReport])
 
   useEffect(() => {
@@ -48,6 +49,8 @@ export default function Installations({category, onReportsCategoryReset, filtere
       locationArr.push(streetName, postalCode, city);
       setLocation(locationArr.join(", "));
     }
+  
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [streetName, postalCode, city])
 
   useEffect(() => {
