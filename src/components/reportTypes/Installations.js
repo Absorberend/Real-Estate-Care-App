@@ -6,43 +6,23 @@ import "./ReportsStyling.css";
 import BackButton from '../BackButton';
 import { useNavigate } from 'react-router-dom';
 
-export default function Installations({category, onReportsCategoryReset, filteredReport, editReport, reportId, onEditStateClick}) {
-  const [editOn, setEditOn] = useState(false);
-  const [streetName, setStreetName] = useState("");
-  const [postalCode, setPostalCode] = useState("");
-  const [city, setCity] = useState("");
-  const [location, setLocation] = useState("");
-  const [date, setDate] = useState("");
-  const [approved, setApproved] = useState("");
-  const [installationType, setInstallationType] = useState("default");
-  const [reportedMalfunction, setReportedMalfunction] = useState("");
-  const [testProcedure, setTestProcedure] = useState("");
-  const [description, setDescription] = useState("");
-  const [pictures, setPictures] = useState("");
-  const { post, put } = useFetch();
+export default function Installations({filteredReport, reportId}) {
+  const [streetName, setStreetName] = useState(filteredReport.location.split(', ')[0] || "");
+  const [postalCode, setPostalCode] = useState(filteredReport.location.split(', ')[1] || "");
+  const [city, setCity] = useState(filteredReport.location.split(', ')[2] || "");
+  const [location, setLocation] = useState(filteredReport.location || "");
+  const [date, setDate] = useState(filteredReport.date || "");
+  const [approved, setApproved] = useState(filteredReport.approved || "");
+  const [installationType, setInstallationType] = useState(filteredReport.installationType || "default");
+  const [reportedMalfunction, setReportedMalfunction] = useState(filteredReport.reportedMalfunction || "");
+  const [testProcedure, setTestProcedure] = useState(filteredReport.testProcedure || "");
+  const [description, setDescription] = useState(filteredReport.description || "");
+  const [pictures, setPictures] = useState(filteredReport.pictures || "");
+  const { put } = useFetch();
   const { uploadImage, srcEncoded } = useBaseImg();
   const navigate = useNavigate();
 
   let locationArr = [];
-
-  useEffect(() => {
-    if (editReport) {
-      setStreetName(filteredReport.location.split(', ')[0]);
-      setPostalCode(filteredReport.location.split(', ')[1]);
-      setCity(filteredReport.location.split(', ')[2]);
-      setLocation(filteredReport.location);
-      setDate(filteredReport.date);
-      setApproved(filteredReport.approved);
-      setInstallationType(filteredReport.installationType);
-      setReportedMalfunction(filteredReport.reportedMalfunction);
-      setTestProcedure(filteredReport.testProcedure);
-      setDescription(filteredReport.description);
-      setPictures(filteredReport.pictures);
-      setEditOn(editReport);
-    }
-
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [editReport])
 
   useEffect(() => {
     if (streetName && postalCode && city) {
@@ -62,27 +42,9 @@ export default function Installations({category, onReportsCategoryReset, filtere
   const handleDamagesSubmit = async (e) => {
     e.preventDefault();
 
-    const doc = {category: "installations", location, date, installationType, reportedMalfunction, testProcedure, approved, description, pictures};
+    const doc = {category: "installations", location, date, installationType, reportedMalfunction, testProcedure, approved, description, pictures, completed: "true"};
 
-    if (!editOn) {
-      post("reports", doc);
-      onReportsCategoryReset();
-    } else if (editReport) {
-      put("reports", reportId, doc);
-      onEditStateClick();
-    }
-
-    setLocation("");
-    setStreetName("");
-    setPostalCode("");
-    setCity("");
-    setDate("");
-    setApproved("");
-    setInstallationType("default");
-    setReportedMalfunction("");
-    setTestProcedure("");
-    setDescription("");
-    setPictures("");
+    put("reports", reportId, doc);
     navigate('/');
   }
 

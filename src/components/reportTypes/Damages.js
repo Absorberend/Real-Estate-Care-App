@@ -6,42 +6,22 @@ import "./ReportsStyling.css";
 import BackButton from '../BackButton';
 import { useNavigate } from 'react-router-dom';
 
-export default function Damages({category, onReportsCategoryReset, filteredReport, editReport, reportId, onEditStateClick}) {
-  const [editOn, setEditOn] = useState(false);
-  const [streetName, setStreetName] = useState("");
-  const [postalCode, setPostalCode] = useState("");
-  const [city, setCity] = useState("");
-  const [location, setLocation] = useState("");
-  const [date, setDate] = useState("");
-  const [newDamages, setNewDamages] = useState("");
-  const [damageType, setDamageType] = useState("default");
-  const [acuteActionRequired, setAcuteActionRequired] = useState("");
-  const [description, setDescription] = useState("");
-  const [pictures, setPictures] = useState("");
-  const { post, put } = useFetch();
+export default function Damages({filteredReport, reportId}) {
+  const [streetName, setStreetName] = useState(filteredReport.location.split(', ')[0] || "");
+  const [postalCode, setPostalCode] = useState(filteredReport.location.split(', ')[1] || "");
+  const [city, setCity] = useState(filteredReport.location.split(', ')[2] || "");
+  const [location, setLocation] = useState(filteredReport.location || "");
+  const [date, setDate] = useState(filteredReport.date || "");
+  const [newDamages, setNewDamages] = useState(filteredReport.newDamages || "");
+  const [damageType, setDamageType] = useState(filteredReport.damageType || "default");
+  const [acuteActionRequired, setAcuteActionRequired] = useState(filteredReport.acuteActionRequired || "");
+  const [description, setDescription] = useState(filteredReport.description || "");
+  const [pictures, setPictures] = useState(filteredReport.pictures || "");
+  const { put } = useFetch();
   const { uploadImage, srcEncoded } = useBaseImg();
   const navigate = useNavigate();
 
   let locationArr = [];
-
-
-  useEffect(() => {
-    if (editReport) {
-      setStreetName(filteredReport.location.split(', ')[0]);
-      setPostalCode(filteredReport.location.split(', ')[1]);
-      setCity(filteredReport.location.split(', ')[2]);
-      setLocation(filteredReport.location);
-      setDate(filteredReport.date);
-      setNewDamages(filteredReport.newDamages);
-      setDamageType(filteredReport.damageType);
-      setAcuteActionRequired(filteredReport.acuteActionRequired);
-      setDescription(filteredReport.description);
-      setPictures(filteredReport.pictures);
-      setEditOn(editReport);
-    }
-    
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [editReport])
 
   useEffect(() => {
     if (streetName && postalCode && city) {
@@ -61,26 +41,9 @@ export default function Damages({category, onReportsCategoryReset, filteredRepor
   const handleDamagesSubmit = async (e) => {
     e.preventDefault();
 
-    const doc = {category: "damages", location, date, newDamages, damageType, acuteActionRequired, description, pictures};
+    const doc = {category: "damages", location, date, newDamages, damageType, acuteActionRequired, description, pictures, completed: "true"};
 
-    if (!editOn) {
-      post("reports", doc);
-      onReportsCategoryReset();
-    } else if (editOn) {
-      put("reports", reportId, doc);
-      onEditStateClick();
-    }
-
-    setLocation("");
-    setStreetName("");
-    setPostalCode("");
-    setCity("");
-    setDate("");
-    setNewDamages("");
-    setDamageType("default");
-    setAcuteActionRequired("");
-    setDescription("");
-    setPictures("");
+    put("reports", reportId, doc);
     navigate('/');
   }
 

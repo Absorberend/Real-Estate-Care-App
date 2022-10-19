@@ -6,24 +6,3 @@
     text-align: center;
     font-size: 1.25em;
 }
-
-.home__page__new__report__wrapper {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 1em;
-}
-
-.home__page__link {
-    padding: 0.3em 0.5em;
-    margin: 0;
-    text-decoration: none;
-    border: 2px solid black;
-    border-radius: 50%;
-    background-color: var(--footer-bg-color);
-    box-shadow: 2px 2px 15px 1px rgba(0, 0, 0, 0.1);
-}
-
-.home__page__link__icon {
-    filter: invert(100%);
-}

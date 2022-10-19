@@ -55,16 +55,6 @@ export default function useFetch() {
     
       }, [])
 
-
-    function post(collection, doc) {
-        try {
-            projectFirestore.collection(collection).add(doc)
-        } catch(err) {
-            console.error(err);
-        }
-     
-    }
-
     function put(collection, id, body) {
         try {
             projectFirestore.collection(collection).doc(id).update(body)
@@ -82,5 +72,5 @@ export default function useFetch() {
         } 
     }
 
-    return { post, put, del, loading, data, users, error };
+    return { put, del, loading, data, users, error };
 }

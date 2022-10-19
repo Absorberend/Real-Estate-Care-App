@@ -7,7 +7,7 @@ import './App.css';
 import useFetch from './hooks/useFetch';
 
 import CompletedReports from "./components/menu/CompletedReports.js";
-import AddReports from "./components/menu/AddReports.js";
+import AddReports from "./components/menu/AssignedReports.js";
 import KnowledgeBase from "./components/menu/KnowledgeBase.js";
 import Settings from "./components/menu/Settings.js";
 import Profile from "./components/menu/Profile.js";
@@ -68,7 +68,7 @@ function App() {
     const userLogged = users.filter(user => user.loginName === nameValue && user.password === passValue);
 
     if (userLogged[0]) {
-      setloggedInUser({...userLogged, id: userLogged.id});
+      setloggedInUser({...userLogged});
       setunAuthLogIn(true);
       setLoginFailed(false);
     } else {
@@ -97,6 +97,17 @@ function App() {
     authValue = Math.floor(Math.random() * 1000000).toString();
   }
 
+  const handleCategoryDisplay = (category) => {
+    if (category === 'damages') {
+      return 'Schade';
+    } else if (category === 'modifications') {
+      return 'Modificaties';
+    } else if (category === 'installations') {
+      return 'Installaties';
+    } else if (category === 'maintenance') {
+      return 'Onderhoud';
+    }
+  }
 
   return (
     <>
@@ -104,13 +115,13 @@ function App() {
         {unAuthLogIn && authLogIn && <>
           <header className="app__header">
             <TopBar onSideMenuToggleClick={handleSideMenuToggleClick} onSideMenuClose={handleSideMenuClose} loggedInUser={loggedInUser} />
-            {sideMenuToggle && <SideMenu onSideMenuToggleClick={handleSideMenuToggleClick} onHandleOutsideClick={handleOutsideClick} onLogOut={handleLogOut} />}
+            {sideMenuToggle && <SideMenu onSideMenuToggleClick={handleSideMenuToggleClick} onOutsideClick={handleOutsideClick} onLogOut={handleLogOut} />}
           </header>
           <main className="app__main">
             <Routes>
-              <Route path="/" element={<HomePage loggedInUser={loggedInUser} data={data} />} />
-              <Route path="/AddReports" element={<AddReports />} />
-              <Route path="/CompletedReports" element={<CompletedReports data={data} />}  />
+              <Route path="/" element={<HomePage loggedInUser={loggedInUser} data={data} onCategoryDisplay={handleCategoryDisplay} />} />
+              <Route path="/AssignedReports" element={<AddReports data={data} loggedInUser={loggedInUser} onCategoryDisplay={handleCategoryDisplay} />} />
+              <Route path="/CompletedReports" element={<CompletedReports data={data} onCategoryDisplay={handleCategoryDisplay} />}  />
               <Route path="/KnowledgeBase" element={<KnowledgeBase data={data} />}  />       
               <Route path="/Settings" element={<Settings loggedInUser={loggedInUser} onLogout={handleLogOut} />}  />
               <Route path="/Profile" element={<Profile loggedInUser={loggedInUser} />}  />

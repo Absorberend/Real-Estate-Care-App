@@ -6,41 +6,22 @@ import "./ReportsStyling.css";
 import BackButton from '../BackButton';
 import { useNavigate } from 'react-router-dom';
 
-export default function Modifications({category, onReportsCategoryReset, filteredReport, editReport, reportId, onEditStateClick}) {
-  const [editOn, setEditOn] = useState(false);
-  const [streetName, setStreetName] = useState("");
-  const [postalCode, setPostalCode] = useState("");
-  const [city, setCity] = useState("");
-  const [location, setLocation] = useState("");
-  const [date, setDate] = useState("");
-  const [modificationEncountered, setModificationEncountered] = useState("");
-  const [carriedOutBy, setCarriedOutBy] = useState("default");
-  const [descriptionModification, setDescriptionModification] = useState("");
-  const [action, setAction] = useState("default");
-  const [description, setDescription] = useState("");
-  const { post, put } = useFetch();
+export default function Modifications({filteredReport, reportId}) {
+  const [streetName, setStreetName] = useState(filteredReport.location.split(', ')[0] || "");
+  const [postalCode, setPostalCode] = useState(filteredReport.location.split(', ')[1] || "");
+  const [city, setCity] = useState(filteredReport.location.split(', ')[2] || "");
+  const [location, setLocation] = useState(filteredReport.location || "");
+  const [date, setDate] = useState(filteredReport.date || "");
+  const [modificationEncountered, setModificationEncountered] = useState(filteredReport.modificationEncountered || "");
+  const [carriedOutBy, setCarriedOutBy] = useState(filteredReport.carriedOutBy || "default");
+  const [descriptionModification, setDescriptionModification] = useState(filteredReport.descriptionModification || "");
+  const [action, setAction] = useState(filteredReport.action || "default");
+  const [description, setDescription] = useState(filteredReport.description || "");
+  const { put } = useFetch();
   const { uploadImage, srcEncoded } = useBaseImg();
   const navigate = useNavigate();
 
   let locationArr = [];
-
-  useEffect(() => {
-    if (editReport) {
-      setStreetName(filteredReport.location.split(', ')[0]);
-      setPostalCode(filteredReport.location.split(', ')[1]);
-      setCity(filteredReport.location.split(', ')[2]);
-      setLocation(filteredReport.location);
-      setDate(filteredReport.date);
-      setAction(filteredReport.action);
-      setCarriedOutBy(filteredReport.carriedOutBy);
-      setDescriptionModification(filteredReport.descriptionModification);
-      setModificationEncountered(filteredReport.modificationEncountered);
-      setDescription(filteredReport.description);
-      setEditOn(editReport);
-    }
-  
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [editReport])
 
   useEffect(() => {
     if (streetName && postalCode && city) {
@@ -60,26 +41,9 @@ export default function Modifications({category, onReportsCategoryReset, filtere
   const handleDamagesSubmit = async (e) => {
     e.preventDefault();
 
-    const doc = {category: "modifications", location, date, modificationEncountered, carriedOutBy, descriptionModification, action, description};
+    const doc = {category: "modifications", location, date, modificationEncountered, carriedOutBy, descriptionModification, action, description, completed: "true"};
 
-    if (!editOn) {
-      post("reports", doc);
-      onReportsCategoryReset();
-    } else if (editReport) {
-      put("reports", reportId, doc);
-      onEditStateClick();
-    }
-
-    setLocation("");
-    setStreetName("");
-    setPostalCode("");
-    setCity("");
-    setDate("");
-    setModificationEncountered("");
-    setCarriedOutBy("default");
-    setDescriptionModification("");
-    setAction("default");
-    setDescription("");
+    put("reports", reportId, doc);
     navigate('/');
   }
 

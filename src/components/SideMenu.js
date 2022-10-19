@@ -6,7 +6,7 @@ import useOutsideClick from '../hooks/useOutsideClick.js';
 import closeIcon from "../assets/icon-close.svg";
 
 
-export default function SideMenu({onSideMenuToggleClick, onHandleOutsideClick, onLogOut}) {
+export default function SideMenu({onSideMenuToggleClick, onOutsideClick, onLogOut}) {
     const ref = useRef();
     const navigate = useNavigate();
 
@@ -14,8 +14,8 @@ export default function SideMenu({onSideMenuToggleClick, onHandleOutsideClick, o
         onSideMenuToggleClick();
     
         //Makes sure that HandleSideMenuToggleClick function doesn't fire at the same time.
-       onHandleOutsideClick();
-        setTimeout(() =>onHandleOutsideClick(), 200);
+       onOutsideClick();
+        setTimeout(() =>onOutsideClick(), 200);
       });
 
 

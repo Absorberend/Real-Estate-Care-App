@@ -11,7 +11,7 @@ export default function NavBar({onSideMenuClose}) {
     <>
         <div className="nav__footer">
             <NavLink 
-                to="/AddReports" 
+                to="/AssignedReports" 
                 className="nav__footer__link__default"
                 onClick={onSideMenuClose}
             >
@@ -20,7 +20,7 @@ export default function NavBar({onSideMenuClose}) {
                 alt="report icon" 
                 />
                 <span className="nav__footer__link__hidden">
-                Add Report
+                Assigned Report
                 </span>
             </NavLink>
 

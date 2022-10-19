@@ -31,14 +31,19 @@
 
 .completed__reports__legenda {
     display: flex;
-    width: 85%;
-    padding: 0;
+    width: 100%;
+    padding: 0 1em 0 1em;
     font-family: 'Quicksand', sans-serif;
-    justify-content: space-evenly;
+    justify-content: space-between;
     font-weight: 600;
-    font-size: 0.75em;
+    font-size: 1em;
     text-align: start;
     gap: 0.5em;
+}
+
+.completed__reports__legenda__hidden {
+    width: 1em;
+    visibility: hidden;
 }
 
 .completed__reports__button {
@@ -126,7 +131,8 @@
 }
 
 .completed__reports__overview__container img {
-    max-width: 100%;
+    max-width: 400px;
+    width: 100%;
     border: 1px solid black;
     border-radius: 5px;
 }

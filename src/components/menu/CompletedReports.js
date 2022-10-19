@@ -10,7 +10,7 @@ import trashcanIcon from "../../assets/trash-x.svg";
 import useFetch from '../../hooks/useFetch';
 import BackButton from "../BackButton.js";
 
-export default function CompletedReports({data}) {
+export default function CompletedReports({data, onCategoryDisplay}) {
   const [filteredReport, setFilteredReport] = useState([]);
   const [deleteModal, setDeleteModal] = useState(false);
   const [didExpand, setDidExpand] = useState(false);
@@ -33,24 +33,12 @@ export default function CompletedReports({data}) {
     }
   }
 
-  const handleCategoryDisplay = (category) => {
-    if (category === 'damages') {
-      return 'Schade';
-    } else if (category === 'modifications') {
-      return 'Modificaties';
-    } else if (category === 'installations') {
-      return 'Installaties';
-    } else if (category === 'maintenance') {
-      return 'Onderhoud';
-    }
-  }
-
   const handleDeleteModalClick = () => {
     setDeleteModal(prevDeleteModal => !prevDeleteModal);
   }
 
   if (data) {
-    viewReport = data.sort((a,b) =>  new Date(b.date) - new Date(a.date)).map(report => {
+    viewReport = data.filter(report => report.completed === "true").sort((a,b) => new Date(b.date) - new Date(a.date)).map(report => {
       return <div key={`dateSorted${report.id}`}>
       <button 
         key={report.id} 
@@ -58,7 +46,7 @@ export default function CompletedReports({data}) {
         onClick={() => handleReportClick(report.id)}
       >
         <span>{`${new Date(report.date).toLocaleDateString()}`}</span>
-        <span>{`${handleCategoryDisplay(report.category)}`}</span>
+        <span>{`${onCategoryDisplay(report.category)}`}</span>
         <span>{`${report.location.split(', ')[0]}`}</span>
         <span>{`${report.location.split(', ')[2]}`}</span>
         <span>
@@ -133,7 +121,7 @@ export default function CompletedReports({data}) {
         </div>}
         {report?.pictures && <div className="completed__reports__overview__expanded__reports">
           <span>Foto:</span>
-          <img src={report.pictures} alt="gedocumenteerde modificatie" />
+          <img src={report.pictures} alt="gedocumenteerde modificatie" className="completed__reports__overview__img" />
         </div>} 
 
         {deleteModal && <div className="overview__container__delete__modal__wrapper">
@@ -174,12 +162,13 @@ export default function CompletedReports({data}) {
         <BackButton />
       </div>}
       <section className="completed__reports__container">
-        <h2>Recente rapporten:</h2>
+        <h2>Uitgevoerde rapportages:</h2>
         <div className="completed__reports__legenda">
           <span>Datum</span>
           <span>Type</span>
           <span>Straat</span>
           <span>Plaats</span>
+          <span className="completed__reports__legenda__hidden">Hidden</span>
         </div>
         {loading && <div className="completed__reports__button__container completed__reports__loading__error__messages">Loading...</div>}
         {!loading && !error && <div className="completed__reports__button__container">

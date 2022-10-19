@@ -6,39 +6,21 @@ import "./ReportsStyling.css";
 import BackButton from '../BackButton';
 import { useNavigate } from 'react-router-dom';
 
-export default function Maintenance({category, onReportsCategoryReset, filteredReport, editReport, reportId, onEditStateClick}) {
-  const [editOn, setEditOn] = useState(false);
-  const [streetName, setStreetName] = useState("");
-  const [postalCode, setPostalCode] = useState("");
-  const [city, setCity] = useState("");
-  const [location, setLocation] = useState("");
-  const [date, setDate] = useState("");
-  const [maintenanceType, setMaintenanceType] = useState("default");
-  const [acuteActionRequired, setAcuteActionRequired] = useState("");
-  const [costIndication, setCostIndication] = useState("default");
-  const [pictures, setPictures] = useState("");
-  const { post, put } = useFetch();
+export default function Maintenance({filteredReport, reportId}) {
+  const [streetName, setStreetName] = useState(filteredReport.location.split(', ')[0] || "");
+  const [postalCode, setPostalCode] = useState(filteredReport.location.split(', ')[1] || "");
+  const [city, setCity] = useState(filteredReport.location.split(', ')[2] || "");
+  const [location, setLocation] = useState(filteredReport.location || "");
+  const [date, setDate] = useState(filteredReport.date || "");
+  const [maintenanceType, setMaintenanceType] = useState(filteredReport.maintenanceType || "default");
+  const [acuteActionRequired, setAcuteActionRequired] = useState(filteredReport.acuteActionRequired || "");
+  const [costIndication, setCostIndication] = useState(filteredReport.costIndication || "default");
+  const [pictures, setPictures] = useState(filteredReport.pictures || "");
+  const { put } = useFetch();
   const { uploadImage, srcEncoded } = useBaseImg();
   const navigate = useNavigate();
 
   let locationArr = [];
-
-  useEffect(() => {
-    if (editReport) {
-      setStreetName(filteredReport.location.split(', ')[0]);
-      setPostalCode(filteredReport.location.split(', ')[1]);
-      setCity(filteredReport.location.split(', ')[2]);
-      setLocation(filteredReport.location);
-      setDate(filteredReport.date);
-      setCostIndication(filteredReport.costIndication);
-      setMaintenanceType(filteredReport.maintenanceType);
-      setAcuteActionRequired(filteredReport.acuteActionRequired);
-      setPictures(filteredReport.pictures);
-      setEditOn(editReport);
-    }
-
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [editReport])
 
   useEffect(() => {
     if (streetName && postalCode && city) {
@@ -58,25 +40,9 @@ export default function Maintenance({category, onReportsCategoryReset, filteredR
   const handleDamagesSubmit = async (e) => {
     e.preventDefault();
 
-    const doc = {category: "maintenance", location, date, maintenanceType, acuteActionRequired, costIndication, pictures};
+    const doc = {category: "maintenance", location, date, maintenanceType, acuteActionRequired, costIndication, pictures, completed: "true"};
 
-    if (!editOn) {
-      post("reports", doc);
-      onReportsCategoryReset();
-    } else if (editReport) {
-      put("reports", reportId, doc);
-      onEditStateClick();
-    }
-
-    setLocation("");
-    setStreetName("");
-    setPostalCode("");
-    setCity("");
-    setDate("");
-    setMaintenanceType("default")
-    setAcuteActionRequired("");
-    setCostIndication("default");
-    setPictures("");
+    put("reports", reportId, doc);
     navigate('/');
   }
 
