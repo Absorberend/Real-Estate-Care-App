@@ -31,6 +31,7 @@ export default function Settings({loggedInUser, onLogout}) {
       }, 3000);
     }
 
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [passwordMatch, passwordChanged])
 
   const handleDamagesSubmit = async (e) => {
