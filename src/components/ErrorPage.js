@@ -5,6 +5,7 @@ import "./ErrorPage.css";
 import logoBlack from "../assets/logo-zwart.svg";
 
 export default function ErrorPage({unAuthLogIn, authLogIn}) {
+  
 
   return (
     <div className="error__page__container">
