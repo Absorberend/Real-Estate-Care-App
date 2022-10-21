@@ -51,7 +51,7 @@ export default function Damages({filteredReport, reportId}) {
       put("reports", reportId, doc);
       navigate('/');
       setLoading(false);
-    }, 2000)
+    }, 5000)
   }
 
   return (
