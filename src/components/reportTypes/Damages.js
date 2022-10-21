@@ -47,11 +47,11 @@ export default function Damages({filteredReport, reportId}) {
     const doc = {category: "damages", location, date, newDamages, damageType, acuteActionRequired, description, pictures, completed: "true"};
 
     setTimeout(() => {
-      //prevents a bug on mobile where images don't get uploaded when pressing the submit button to quickly after uploading.
+      //prevents a bug on mobile where images don't get uploaded when pressing the submit button to quickly after uploading the image.
       put("reports", reportId, doc);
       navigate('/');
       setLoading(false);
-    }, 5000)
+    }, 3000)
   }
 
   return (
@@ -120,6 +120,7 @@ export default function Damages({filteredReport, reportId}) {
         <div className="report__form__file__type__default">
           <label>Foto toevoegen:</label>
           <input type="file" accept="image/*" id="report__file__input" onChange={(e) => uploadImage(e)} />
+          <span><span style={{fontWeight: "600", fontSize: "1em"}}>Tip: </span>zorg ervoor dat de foto goed ingeladen is op je telefoon alvorens je deze selecteert.</span>
         </div>
         <div className="reports__submit__button__wrapper">
           <input type="submit" value={loading ? "" : "Inspectie registreren"} disabled={loading} className="reports__button__default" />

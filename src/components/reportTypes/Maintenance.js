@@ -5,6 +5,7 @@ import useFetch from '../../hooks/useFetch';
 import "./ReportsStyling.css";
 import BackButton from '../BackButton';
 import { useNavigate } from 'react-router-dom';
+import BeatLoader from "react-spinners/BeatLoader";
 
 export default function Maintenance({filteredReport, reportId}) {
   const [streetName, setStreetName] = useState(filteredReport.location.split(', ')[0] || "");
@@ -16,6 +17,7 @@ export default function Maintenance({filteredReport, reportId}) {
   const [acuteActionRequired, setAcuteActionRequired] = useState(filteredReport.acuteActionRequired || "");
   const [costIndication, setCostIndication] = useState(filteredReport.costIndication || "default");
   const [pictures, setPictures] = useState(filteredReport.pictures || "");
+  const [loading, setLoading] = useState(false);
   const { put } = useFetch();
   const { uploadImage, srcEncoded } = useBaseImg();
   const navigate = useNavigate();
@@ -39,11 +41,16 @@ export default function Maintenance({filteredReport, reportId}) {
 
   const handleDamagesSubmit = async (e) => {
     e.preventDefault();
-
+    setLoading(true);
+  
     const doc = {category: "maintenance", location, date, maintenanceType, acuteActionRequired, costIndication, pictures, completed: "true"};
 
-    put("reports", reportId, doc);
-    navigate('/');
+    setTimeout(() => {
+      //prevents a bug on mobile where images don't get uploaded when pressing the submit button to quickly after uploading the image.
+      put("reports", reportId, doc);
+      navigate('/');
+      setLoading(false);
+    }, 3000)
   }
 
   return (
@@ -104,8 +111,14 @@ export default function Maintenance({filteredReport, reportId}) {
         <div className="report__form__file__type__default">
           <label>Foto toevoegen:</label>
           <input type="file" accept="image/*" id="report__file__input" onChange={(e) => uploadImage(e)} />
+          <span><span style={{fontWeight: "600", fontSize: "1em"}}>Tip: </span>zorg ervoor dat de foto goed ingeladen is op je telefoon alvorens je deze selecteert.</span>
         </div>
-        <input type="submit" value="Inspectie registreren" className="reports__button__default" />
+        <div className="reports__submit__button__wrapper">
+          <input type="submit" value={loading ? "" : "Inspectie registreren"} disabled={loading} className="reports__button__default" />
+          <div className="reports__submit__button__loader">
+            <BeatLoader loading={loading} />
+          </div>
+        </div>
       </form>
     </section>
   )
