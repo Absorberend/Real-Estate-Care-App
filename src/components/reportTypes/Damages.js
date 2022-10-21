@@ -27,8 +27,9 @@ export default function Damages({filteredReport, reportId}) {
 
   useEffect(() => {
     if (streetName && postalCode && city) {
-      locationArr.push(streetName, postalCode, city);
-      setLocation(locationArr.join(", "));
+        setLocation([]);
+        locationArr.push(streetName, postalCode, city);
+        setLocation(locationArr.join(", "));   
     }
 
   // eslint-disable-next-line react-hooks/exhaustive-deps
