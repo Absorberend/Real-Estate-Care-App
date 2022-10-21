@@ -11,7 +11,7 @@ export default function Maintenance({filteredReport, reportId}) {
   const [streetName, setStreetName] = useState(filteredReport.location.split(', ')[0] || "");
   const [postalCode, setPostalCode] = useState(filteredReport.location.split(', ')[1] || "");
   const [city, setCity] = useState(filteredReport.location.split(', ')[2] || "");
-  const [location, setLocation] = useState(filteredReport.location || "");
+  const [location, setLocation] = useState("");
   const [date, setDate] = useState(filteredReport.date || "");
   const [maintenanceType, setMaintenanceType] = useState(filteredReport.maintenanceType || "default");
   const [acuteActionRequired, setAcuteActionRequired] = useState(filteredReport.acuteActionRequired || "");
@@ -26,8 +26,10 @@ export default function Maintenance({filteredReport, reportId}) {
 
   useEffect(() => {
     if (streetName && postalCode && city) {
+      setLocation([]);
+      locationArr = []
       locationArr.push(streetName, postalCode, city);
-      setLocation(locationArr.join(", "));
+      setLocation(locationArr.join(", "));   
     }
   
   // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -50,7 +52,7 @@ export default function Maintenance({filteredReport, reportId}) {
       put("reports", reportId, doc);
       navigate('/');
       setLoading(false);
-    }, 3000)
+    }, 2000)
   }
 
   return (

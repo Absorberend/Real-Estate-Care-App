@@ -28,8 +28,10 @@ export default function Installations({filteredReport, reportId}) {
 
   useEffect(() => {
     if (streetName && postalCode && city) {
+      setLocation([]);
+      locationArr = []
       locationArr.push(streetName, postalCode, city);
-      setLocation(locationArr.join(", "));
+      setLocation(locationArr.join(", "));   
     }
   
   // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -52,7 +54,7 @@ export default function Installations({filteredReport, reportId}) {
       put("reports", reportId, doc);
       navigate('/');
       setLoading(false);
-    }, 3000)
+    }, 2000)
   }
 
   return (
