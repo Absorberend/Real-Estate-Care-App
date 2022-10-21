@@ -33,7 +33,7 @@ function App() {
   const [reportModalOpen, setReportModalOpen] = useState(false);
   const [redirectURL, setRedirectURL] = useState(null);
   const {data, users} = useFetch();
-  const [matches, setMatches] = useState(window.matchMedia("(min-width: 480px)").matches);
+  const [matches, setMatches] = useState(window.matchMedia("(min-width: 500px)").matches);
   const isKeyboardOpen = useDetectKeyboardOpen(300, null);
 
 
@@ -124,6 +124,11 @@ function App() {
       setReportModalOpen(prevReportModalOpen => !prevReportModalOpen);
   }
 
+  const handleCloseReportsModalClick = () => {
+    setReportModalOpen(false);
+}
+
+
   return (
     <>
       <HashRouter>
@@ -142,8 +147,8 @@ function App() {
               <Route path="/CompletedReports" element={<CompletedReports data={data} onCategoryDisplay={handleCategoryDisplay} />}  />
               <Route path="/KnowledgeBase" element={<KnowledgeBase data={data} />}  />       
               <Route path="/Settings" element={<Settings loggedInUser={loggedInUser} onLogout={handleLogOut} />}  />
-              <Route path="/EditReports/:reportId" element={<EditReports data={data} onReportsModalToggleClick={handleReportsModalToggleClick} />}  />           
-              <Route path="*" element={<ErrorPage unAuthLogIn={unAuthLogIn} authLogIn={authLogIn} onReportsModalToggleClick={handleReportsModalToggleClick}/>}  />    
+              <Route path="/EditReports/:reportId" element={<EditReports data={data} onSideMenuClose={handleSideMenuClose} onCloseReportsModalClick={handleCloseReportsModalClick} onReportsModalToggleClick={handleReportsModalToggleClick} sideMenuToggle={sideMenuToggle}/>}  />           
+              <Route path="*" element={<ErrorPage unAuthLogIn={unAuthLogIn} authLogIn={authLogIn} onCloseReportsModalClick={handleCloseReportsModalClick}/>}  />    
             </Routes>
           </main>
           {!matches && isKeyboardOpen ? "" : <footer className="app__footer">
@@ -156,7 +161,7 @@ function App() {
         {!authLogIn && <>
           <Routes>
             <Route path="/" element={<LoginPage onLoginSubmit={handleLoginSubmit} unAuthLogIn={unAuthLogIn} authValue={authValue} onAuthSubmit={handleAuthSubmit} loginFailed={loginFailed} />} />
-            <Route path="*" element={<ErrorPage />} />
+            <Route path="*" element={<ErrorPage onCloseReportsModalClick={handleCloseReportsModalClick}/>} />
           </Routes>
         </>}
       </HashRouter>

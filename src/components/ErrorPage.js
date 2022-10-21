@@ -1,14 +1,16 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom';
 
 import "./ErrorPage.css";
 import logoBlack from "../assets/logo-zwart.svg";
 
-export default function ErrorPage({unAuthLogIn, authLogIn}) {
+export default function ErrorPage({unAuthLogIn, authLogIn, onCloseReportsModalClick}) {
 
-  window.addEventListener('beforeunload', () => {
-    console.log('bob');
-  });
+  useEffect(() => {
+    onCloseReportsModalClick();
+
+  }, [])
+
   
   return (
     <div className="error__page__container">

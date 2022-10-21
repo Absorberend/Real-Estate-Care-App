@@ -29,8 +29,13 @@ export default function SideMenu({onSideMenuToggleClick, onOutsideClick, onLogOu
     const handleSideMenuLinkClick = () => {
 
         if (matchedURL.length > 0) {
-            onSideMenuToggleClick();
-            onReportsModalToggleClick('/Settings');
+            if (!reportModalOpen) {
+                onSideMenuToggleClick();
+                onReportsModalToggleClick('/Settings');
+            } else {
+                onSideMenuToggleClick();
+                onReportsModalToggleClick('/Settings');
+            }
         } else {
             onSideMenuToggleClick();
         }

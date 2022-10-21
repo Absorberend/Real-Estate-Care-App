@@ -11,7 +11,7 @@ import ErrorPage from "../../components/ErrorPage.js";
 
 
 
-export default function EditReports({data, onReportsModalToggleClick}) {
+export default function EditReports({data, onReportsModalToggleClick, onCloseReportsModalClick, onSideMenuClose, sideMenuToggle}) {
     const [filteredReport, setFilteredReport] = useState({});
     const {loading} = useFetch();
     const Delayed = useDelayed();
@@ -32,7 +32,7 @@ export default function EditReports({data, onReportsModalToggleClick}) {
     {filteredReport?.category === "installations" && <Installations filteredReport={filteredReport} reportId={reportId} onReportsModalToggleClick={onReportsModalToggleClick}/>}
     {filteredReport?.category === "maintenance" && <Maintenance filteredReport={filteredReport} reportId={reportId} onReportsModalToggleClick={onReportsModalToggleClick}/>}
     {filteredReport?.category === "modifications" && <Modifications filteredReport={filteredReport} reportId={reportId} onReportsModalToggleClick={onReportsModalToggleClick}/>}
-    {!loading && reportId !== filteredReport?.id && <Delayed><ErrorPage /></Delayed>}
+    {!loading && reportId !== filteredReport?.id && <Delayed><ErrorPage onCloseReportsModalClick={onCloseReportsModalClick} /></Delayed>}
     </>
   )
 }
