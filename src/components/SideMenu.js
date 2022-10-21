@@ -52,7 +52,7 @@ export default function SideMenu({onSideMenuToggleClick, onOutsideClick, onLogOu
             <NavLink 
                 to={matchedURL.length > 0 ? null : "/Settings"} 
                 onClick={handleSideMenuLinkClick}
-                style={({ isActive }) => isActive && !reportModalOpen ? activeStyle : undefined}
+                style={({ isActive }) => isActive && matchedURL.length > 0 ? activeStyle : undefined}
             >Settings</NavLink>
             <div>
                 <button onClick={() => {
