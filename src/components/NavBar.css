@@ -42,3 +42,21 @@
 .active span, .active img {
     opacity: 1;
 }
+
+.nav__reports__modal__container__wrapper {
+    display: flex;
+    width: 100%;
+    justify-content: flex-end;
+}
+
+.nav__reports__modal__container__wrapper div:first-child {
+    position: absolute;
+    top: 5.7em;
+    right: 6.6em;
+    height: 12.7em;
+    width: 10em;
+}
+
+.nav__reports__modal__container__wrapper div span {
+    font-size: 0.95em;
+}

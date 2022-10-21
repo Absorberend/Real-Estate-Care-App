@@ -4,7 +4,8 @@
     display: flex;
     width: 100%;
     justify-content: flex-end;
-    padding: 0 0 0 0;
+    padding: 0;
+    position: relative;
 }
 
 .back__button__default {
@@ -26,4 +27,13 @@
 
 .back__button__default img {
     filter: invert(100%);
+}
+
+.back__button__reports__modal__container__wrapper {
+    position: relative;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+    padding-inline-end: 4.5em;
 }

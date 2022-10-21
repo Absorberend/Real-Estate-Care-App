@@ -1,16 +1,34 @@
-import React from 'react'
-import { Link } from 'react-router-dom';
+import React, {useState, useEffect} from 'react'
+import { Link, useLocation } from 'react-router-dom';
 
 import "./TopBar.css";
 import logoWhiteIcon from "../assets/logo-wit.svg";
 
-export default function TopBar({onSideMenuToggleClick, onSideMenuClose, loggedInUser}) {
+export default function TopBar({onSideMenuToggleClick, onSideMenuClose, loggedInUser, onReportsModalToggleClick, data}) {
+    const [matchedURL, setMatchedURL] = useState([]);
+    const location = useLocation();
+
+    useEffect(() => {
+        if(data) {
+            setMatchedURL(data.filter(report => report.id === location.pathname.slice(13)));
+        }
+    }, [data, location])
+
+    const handleTopBarClick = () => {
+        if (matchedURL.length > 0) {
+            onSideMenuClose();
+            onReportsModalToggleClick('/');
+        } else {
+            onSideMenuClose();
+        }
+    }
+
   return (
     <>
         <Link 
             className="top__bar__logo__container"
-            to="/"
-            onClick={onSideMenuClose}
+            to={matchedURL.length > 0 ? null : "/"}
+            onClick={handleTopBarClick}
         >
         <img 
             src={logoWhiteIcon} 

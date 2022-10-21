@@ -27,3 +27,12 @@
 .app__footer {
     height: 100%;
 }
+
+.app__reports__modal__container__wrapper {
+    position: fixed;
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    padding-block-start: 5.5em;
+    z-index: -5;
+}

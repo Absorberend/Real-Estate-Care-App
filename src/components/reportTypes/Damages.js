@@ -7,11 +7,11 @@ import BackButton from '../BackButton';
 import { useNavigate } from 'react-router-dom';
 import BeatLoader from "react-spinners/BeatLoader";
 
-export default function Damages({filteredReport, reportId}) {
+export default function Damages({filteredReport, reportId, onReportsModalToggleClick}) {
   const [streetName, setStreetName] = useState(filteredReport.location.split(', ')[0] || "");
   const [postalCode, setPostalCode] = useState(filteredReport.location.split(', ')[1] || "");
   const [city, setCity] = useState(filteredReport.location.split(', ')[2] || "");
-  const [location, setLocation] = useState(filteredReport.location || "");
+  const [location, setLocation] = useState("");
   const [date, setDate] = useState(filteredReport.date || "");
   const [newDamages, setNewDamages] = useState(filteredReport.newDamages || "");
   const [damageType, setDamageType] = useState(filteredReport.damageType || "default");
@@ -24,11 +24,11 @@ export default function Damages({filteredReport, reportId}) {
   const navigate = useNavigate();
 
   let locationArr = [];
-
+  
   useEffect(() => {
     if (streetName && postalCode && city) {
       setLocation([]);
-      locationArr = []
+      locationArr = [];
       locationArr.push(streetName, postalCode, city);
       setLocation(locationArr.join(", "));   
     }
@@ -58,7 +58,7 @@ export default function Damages({filteredReport, reportId}) {
 
   return (
     <section className="reports__container__default">
-      <BackButton />
+      <BackButton onReportsModalToggleClick={onReportsModalToggleClick}/>
       <h4 className="reports__header__default">Schade opnemen</h4>
       <form className="reports__inspection__form__default" onSubmit={handleDamagesSubmit} >
         <div className="report__form__default">

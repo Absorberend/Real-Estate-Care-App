@@ -7,11 +7,11 @@ import BackButton from '../BackButton';
 import { useNavigate } from 'react-router-dom';
 import BeatLoader from "react-spinners/BeatLoader";
 
-export default function Installations({filteredReport, reportId}) {
+export default function Installations({filteredReport, reportId, onReportsModalToggleClick}) {
   const [streetName, setStreetName] = useState(filteredReport.location.split(', ')[0] || "");
   const [postalCode, setPostalCode] = useState(filteredReport.location.split(', ')[1] || "");
   const [city, setCity] = useState(filteredReport.location.split(', ')[2] || "");
-  const [location, setLocation] = useState(filteredReport.location || "");
+  const [location, setLocation] = useState("");
   const [date, setDate] = useState(filteredReport.date || "");
   const [approved, setApproved] = useState(filteredReport.approved || "");
   const [installationType, setInstallationType] = useState(filteredReport.installationType || "default");
@@ -29,7 +29,7 @@ export default function Installations({filteredReport, reportId}) {
   useEffect(() => {
     if (streetName && postalCode && city) {
       setLocation([]);
-      locationArr = []
+      locationArr = [];
       locationArr.push(streetName, postalCode, city);
       setLocation(locationArr.join(", "));   
     }
@@ -59,7 +59,7 @@ export default function Installations({filteredReport, reportId}) {
 
   return (
     <section className="reports__container__default">
-      <BackButton />
+      <BackButton onReportsModalToggleClick={onReportsModalToggleClick}/>
       <h4 className="reports__header__default">Technische installaties inspecteren</h4>
       <form className="reports__inspection__form__default" onSubmit={handleDamagesSubmit}>
         <div className="report__form__default">

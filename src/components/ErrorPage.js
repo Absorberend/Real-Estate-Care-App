@@ -1,15 +1,14 @@
-import React, {useEffect} from 'react'
+import React from 'react'
 import { Link } from 'react-router-dom';
 
 import "./ErrorPage.css";
 import logoBlack from "../assets/logo-zwart.svg";
 
-export default function ErrorPage({unAuthLogIn, authLogIn, onSideMenuClose}) {
+export default function ErrorPage({unAuthLogIn, authLogIn}) {
 
-  useEffect(() => {
-    onSideMenuClose();
-  }, [])
-
+  window.addEventListener('beforeunload', () => {
+    console.log('bob');
+  });
   
   return (
     <div className="error__page__container">

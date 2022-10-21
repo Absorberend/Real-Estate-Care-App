@@ -7,7 +7,7 @@ import BackButton from '../BackButton';
 import { useNavigate } from 'react-router-dom';
 import BeatLoader from "react-spinners/BeatLoader";
 
-export default function Maintenance({filteredReport, reportId}) {
+export default function Maintenance({filteredReport, reportId, onReportsModalToggleClick}) {
   const [streetName, setStreetName] = useState(filteredReport.location.split(', ')[0] || "");
   const [postalCode, setPostalCode] = useState(filteredReport.location.split(', ')[1] || "");
   const [city, setCity] = useState(filteredReport.location.split(', ')[2] || "");
@@ -27,7 +27,7 @@ export default function Maintenance({filteredReport, reportId}) {
   useEffect(() => {
     if (streetName && postalCode && city) {
       setLocation([]);
-      locationArr = []
+      locationArr = [];
       locationArr.push(streetName, postalCode, city);
       setLocation(locationArr.join(", "));   
     }
@@ -57,7 +57,7 @@ export default function Maintenance({filteredReport, reportId}) {
 
   return (
     <section className="reports__container__default">
-      <BackButton />
+      <BackButton onReportsModalToggleClick={onReportsModalToggleClick}/>
       <h4 className="reports__header__default">Achterstallig onderhoud opnemen</h4>
       <form className="reports__inspection__form__default"  onSubmit={handleDamagesSubmit}>
         <div className="report__form__default">

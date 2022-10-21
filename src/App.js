@@ -2,6 +2,7 @@ import React, {useState, useEffect} from 'react';
 import {HashRouter, Routes, Route} from 'react-router-dom';
 import useDetectKeyboardOpen from "use-detect-keyboard-open";
 
+
 import './App.css';
 
 import useFetch from './hooks/useFetch';
@@ -17,6 +18,8 @@ import SideMenu from './components/SideMenu';
 import HomePage from './components/HomePage';
 import NavBar from './components/NavBar';
 import EditReports from "./components/menu/EditReports.js";
+import ReportsBackButtonModal from "./components/ReportsBackButtonModal.js";
+
 
 let authValue = Math.floor(Math.random() * 1000000).toString(); //auth code for demo purposes only
 
@@ -27,6 +30,9 @@ function App() {
   const [unAuthLogIn, setunAuthLogIn ] = useState(localStorage.getItem("unAuthLogin") === "true" ? true : false);
   const [authLogIn, setAuthLogIn] = useState(localStorage.getItem("authLogin") === "true" ? true : false);
   const [loginFailed, setLoginFailed] = useState(false);
+  const [reportModalOpen, setReportModalOpen] = useState(false);
+  const [redirectURL, setRedirectURL] = useState(null);
+
   const {data, users} = useFetch();
   const isKeyboardOpen = useDetectKeyboardOpen(300, null);
 
@@ -108,13 +114,21 @@ function App() {
     }
   }
 
+  const handleReportsModalToggleClick = (redirectURL) => {
+      setRedirectURL(redirectURL);
+      setReportModalOpen(prevReportModalOpen => !prevReportModalOpen);
+  }
+
   return (
     <>
       <HashRouter>
         {unAuthLogIn && authLogIn && <>
           <header className="app__header">
-            <TopBar onSideMenuToggleClick={handleSideMenuToggleClick} onSideMenuClose={handleSideMenuClose} loggedInUser={loggedInUser} />
-            {sideMenuToggle && <SideMenu onSideMenuToggleClick={handleSideMenuToggleClick} onOutsideClick={handleOutsideClick} onLogOut={handleLogOut} />}
+            <TopBar onSideMenuToggleClick={handleSideMenuToggleClick} onSideMenuClose={handleSideMenuClose} loggedInUser={loggedInUser} onReportsModalToggleClick={handleReportsModalToggleClick} data={data} />
+            {sideMenuToggle && <SideMenu onSideMenuToggleClick={handleSideMenuToggleClick} onOutsideClick={handleOutsideClick} onLogOut={handleLogOut} reportModalOpen={reportModalOpen} onReportsModalToggleClick={handleReportsModalToggleClick} data={data} />}
+            <div className="app__reports__modal__container__wrapper">
+                {reportModalOpen && <ReportsBackButtonModal url={redirectURL} onReportsModalToggleClick={handleReportsModalToggleClick}/>}
+            </div>
           </header>
           <main className="app__main">
             <Routes>
@@ -123,12 +137,12 @@ function App() {
               <Route path="/CompletedReports" element={<CompletedReports data={data} onCategoryDisplay={handleCategoryDisplay} />}  />
               <Route path="/KnowledgeBase" element={<KnowledgeBase data={data} />}  />       
               <Route path="/Settings" element={<Settings loggedInUser={loggedInUser} onLogout={handleLogOut} />}  />
-              <Route path="/EditReports/:reportId" element={<EditReports data={data} />}  />           
-              <Route path="*" element={<ErrorPage unAuthLogIn={unAuthLogIn} authLogIn={authLogIn} onSideMenuClose={handleSideMenuClose} />}  />    
+              <Route path="/EditReports/:reportId" element={<EditReports data={data} onReportsModalToggleClick={handleReportsModalToggleClick} />}  />           
+              <Route path="*" element={<ErrorPage unAuthLogIn={unAuthLogIn} authLogIn={authLogIn} onReportsModalToggleClick={handleReportsModalToggleClick}/>}  />    
             </Routes>
           </main>
           {isKeyboardOpen ? "" : <footer className="app__footer">
-            <NavBar onSideMenuClose={handleSideMenuClose} />
+            <NavBar onSideMenuClose={handleSideMenuClose} data={data} reportModalOpen={reportModalOpen} onReportsModalToggleClick={handleReportsModalToggleClick}/>
           </footer>}
         </>}
         {!authLogIn && <>

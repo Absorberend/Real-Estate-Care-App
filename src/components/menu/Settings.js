@@ -18,8 +18,6 @@ export default function Settings({loggedInUser, onLogout}) {
   const navigate = useNavigate();
 
   useEffect(() => {
-    console.log(loggedInUser);
-
     if(passwordMatch === false) {
       setUserMsg("Het door u ingevoerde (oude) wachtwoord komt niet overeen met het bij ons bekende wachtwoord.");
     } else if (passwordMatch === true) {

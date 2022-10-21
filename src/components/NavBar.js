@@ -1,19 +1,44 @@
-import React from 'react'
-import { NavLink } from 'react-router-dom'
+import React, { useEffect, useState } from 'react'
+import { NavLink, useLocation} from 'react-router-dom'
+
 
 import "./NavBar.css";
 import bookIcon from "../assets/book.svg";
 import checkIcon from "../assets/clipboard-check.svg";
 import reportIcon from "../assets/clipboard-list.svg";
 
-export default function NavBar({onSideMenuClose}) {
+export default function NavBar({onSideMenuClose, data, onReportsModalToggleClick}) {
+    const [matchedURL, setMatchedURL] = useState([]);
+    const location = useLocation();
+
+    useEffect(() => {
+        if(data) {
+            setMatchedURL(data.filter(report => report.id === location.pathname.slice(13)));
+        }
+    }, [data, location])
+
+    const handleLinkClick = (e) => {
+        onSideMenuClose();
+
+        if (matchedURL.length > 0) {
+        onReportsModalToggleClick(e.currentTarget.dataset.url);
+        }
+    }
+
+    let activeStyle = {
+        opacity: "0.6"
+    };
+
+
   return (
     <>
         <div className="nav__footer">
             <NavLink 
-                to="/AssignedReports" 
+                to={matchedURL.length > 0 ? null : "/AssignedReports"} 
                 className="nav__footer__link__default"
-                onClick={onSideMenuClose}
+                onClick={handleLinkClick}
+                data-url="/AssignedReports"
+                style={({ isActive }) => isActive && matchedURL.length > 0 ? activeStyle : undefined}
             >
                 <img 
                 src={reportIcon} 
@@ -25,9 +50,11 @@ export default function NavBar({onSideMenuClose}) {
             </NavLink>
 
             <NavLink 
-                to="/CompletedReports" 
+                to={matchedURL.length > 0 ? null : "/CompletedReports"} 
                 className="nav__footer__link__default"
-                onClick={onSideMenuClose}
+                onClick={handleLinkClick}
+                data-url="/CompletedReports"
+                style={({ isActive }) => isActive && matchedURL.length > 0 ? activeStyle : undefined}
             >
                 <img 
                 src={checkIcon} 
@@ -39,9 +66,11 @@ export default function NavBar({onSideMenuClose}) {
             </NavLink>
 
             <NavLink 
-                to="/KnowledgeBase" 
+                to={matchedURL.length > 0 ? null : "/KnowledgeBase"} 
                 className="nav__footer__link__default"
-                onClick={onSideMenuClose}
+                onClick={handleLinkClick}
+                data-url="/KnowledgeBase"
+                style={({ isActive }) => isActive && matchedURL.length > 0 ? activeStyle : undefined}
             >
                 <img 
                 src={bookIcon} 
