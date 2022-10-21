@@ -1,5 +1,5 @@
 .avatar__container {
-    padding: 1em;
+    padding: 0;
     font-size: 1.2em;
     display: flex;
     flex-direction: column;
@@ -30,8 +30,11 @@
 .avatar__form {
     display: flex;
     flex-direction: column;
+    max-width: 50em;
+    min-width: 14.4em;
     gap: 1em;
     font-weight: 600;
+    padding-block-start: 2em;
 }
 
 .avatar__input__label {
@@ -39,7 +42,7 @@
     font-size: 0.9em;
     font-weight: bold;
     margin-block-end: 0.5em;
-    text-align: center;
+    text-align: start;
 }
 
 .avatar__input__button {

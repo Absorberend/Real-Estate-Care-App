@@ -7,6 +7,7 @@ import closeIcon from "../assets/icon-close.svg";
 
 
 export default function SideMenu({onSideMenuToggleClick, onOutsideClick, onLogOut}) {
+
     const ref = useRef();
     const navigate = useNavigate();
 

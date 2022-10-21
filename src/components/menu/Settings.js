@@ -11,12 +11,14 @@ export default function Settings({loggedInUser, onLogout}) {
   const [newPassword, setNewPassword] = useState("");
   const [passwordMatch, setPasswordMatch] = useState(null);
   const [passwordChanged, setPasswordChanged] = useState(false);
-  const [username, setUsername] = useState("");
+  const [username, setUsername] = useState(loggedInUser[0].loginName);
+  const [userFullName, setUserFullName] = useState(loggedInUser[0].firstName + ' ' + loggedInUser[0].lastName)
   const [userMsg, setUserMsg] = useState("");
   const {put} = useFetch();
   const navigate = useNavigate();
 
   useEffect(() => {
+    console.log(loggedInUser);
 
     if(passwordMatch === false) {
       setUserMsg("Het door u ingevoerde (oude) wachtwoord komt niet overeen met het bij ons bekende wachtwoord.");
@@ -49,12 +51,23 @@ export default function Settings({loggedInUser, onLogout}) {
     <div className="settings__container">
       <BackButton />
       <h2>Instellingen</h2>
-      <h4>Watchwoord wijzigen:</h4>
 
       <form  onSubmit={handleDamagesSubmit} className="settings__form">
 
-        <input hidden type="text" name="username" autoComplete="username" value={username} onChange={(e) => setUsername(e.target.value)} />
+        <div>
+          <div>
+            <label>Inlog naam:</label>
+          </div>
+          <input disabled type="text" name="username" autoComplete="username" value={username} onChange={(e) => setUsername(e.target.value)} />
+        </div>
+        <div>
+          <div>
+            <label>Volledige naam:</label>
+          </div>
+          <input disabled type="text" name="username" autoComplete="username" value={userFullName} onChange={(e) => setUserFullName(e.target.value)} />
+        </div>
 
+        <h4>Watchwoord wijzigen:</h4>
         <div>
           <label>Oude wachtwoord:</label>
           <div>

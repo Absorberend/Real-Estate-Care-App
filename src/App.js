@@ -124,7 +124,7 @@ function App() {
               <Route path="/KnowledgeBase" element={<KnowledgeBase data={data} />}  />       
               <Route path="/Settings" element={<Settings loggedInUser={loggedInUser} onLogout={handleLogOut} />}  />
               <Route path="/EditReports/:reportId" element={<EditReports data={data} />}  />           
-              <Route path="*" element={<ErrorPage unAuthLogIn={unAuthLogIn} authLogIn={authLogIn} />}  />    
+              <Route path="*" element={<ErrorPage unAuthLogIn={unAuthLogIn} authLogIn={authLogIn} onSideMenuClose={handleSideMenuClose} />}  />    
             </Routes>
           </main>
           {isKeyboardOpen ? "" : <footer className="app__footer">
