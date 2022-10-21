@@ -32,9 +32,14 @@ function App() {
   const [loginFailed, setLoginFailed] = useState(false);
   const [reportModalOpen, setReportModalOpen] = useState(false);
   const [redirectURL, setRedirectURL] = useState(null);
-
   const {data, users} = useFetch();
+  const [matches, setMatches] = useState(window.matchMedia("(min-width: 500px)").matches);
   const isKeyboardOpen = useDetectKeyboardOpen(300, null);
+
+
+  useEffect(() => {
+    window.matchMedia("(min-width: 768px)").addEventListener('change', e => setMatches( e.matches ));
+  }, []);
 
   useEffect(() => {
     localStorage.setItem("loggedInUser", JSON.stringify(loggedInUser)); 
@@ -141,7 +146,10 @@ function App() {
               <Route path="*" element={<ErrorPage unAuthLogIn={unAuthLogIn} authLogIn={authLogIn} onReportsModalToggleClick={handleReportsModalToggleClick}/>}  />    
             </Routes>
           </main>
-          {isKeyboardOpen ? "" : <footer className="app__footer">
+          {!matches && isKeyboardOpen ? "" : <footer className="app__footer">
+            <NavBar onSideMenuClose={handleSideMenuClose} data={data} reportModalOpen={reportModalOpen} onReportsModalToggleClick={handleReportsModalToggleClick}/>
+          </footer>}
+          {matches && <footer className="app__footer">
             <NavBar onSideMenuClose={handleSideMenuClose} data={data} reportModalOpen={reportModalOpen} onReportsModalToggleClick={handleReportsModalToggleClick}/>
           </footer>}
         </>}
