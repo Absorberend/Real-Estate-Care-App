@@ -33,12 +33,12 @@ function App() {
   const [reportModalOpen, setReportModalOpen] = useState(false);
   const [redirectURL, setRedirectURL] = useState(null);
   const {data, users} = useFetch();
-  const [matches, setMatches] = useState(window.matchMedia("(min-width: 500px)").matches);
+  const [matches, setMatches] = useState(window.matchMedia("(min-width: 480px)").matches);
   const isKeyboardOpen = useDetectKeyboardOpen(300, null);
 
 
   useEffect(() => {
-    window.matchMedia("(min-width: 768px)").addEventListener('change', e => setMatches( e.matches ));
+    window.matchMedia("(min-width: 480px)").addEventListener('change', e => setMatches( e.matches ));
   }, []);
 
   useEffect(() => {
