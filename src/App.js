@@ -36,9 +36,18 @@ function App() {
   const [matches, setMatches] = useState(window.matchMedia("(min-width: 500px)").matches);
   const isKeyboardOpen = useDetectKeyboardOpen(300, null);
 
+  let editStartURL = false;
+
 
   useEffect(() => {
     window.matchMedia("(min-width: 480px)").addEventListener('change', e => setMatches( e.matches ));
+
+    if (!editStartURL) {
+      if ( window.location.href !== window.location.href + '#/' && !window.location.href.includes('#')) {
+        window.location.replace(window.location.href + '#/');
+        editStartURL = true;
+      }
+    }
   }, []);
 
   useEffect(() => {
