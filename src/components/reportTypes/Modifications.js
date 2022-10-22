@@ -88,7 +88,7 @@ export default function Modifications({filteredReport, reportId, onReportsModalT
         <div className="report__form__file__type__default">
           <label>Gedocumenteerde modificaties:</label>
           <input type="file" accept="image/*" id="report__file__input" onChange={(e) => uploadImage(e)} />
-          <span><span style={{fontWeight: "600", fontSize: "1em"}}>Tip: </span>zorg ervoor dat de foto goed ingeladen is op uw telefoon alvorens u deze selecteert.</span>
+          <span><span style={{fontWeight: "600", fontSize: "1em"}}>Tip: </span>zorg ervoor dat de foto goed ingeladen is op uw telefoon alvorens u deze kiest.</span>
         </div>
         <div className="report__form__default">
           <label>Uitgevoerd door:</label>

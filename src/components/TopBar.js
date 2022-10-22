@@ -36,7 +36,7 @@ export default function TopBar({onSideMenuToggleClick, onSideMenuClose, loggedIn
             className="top__bar__logo__image"
         />
         <div className="top__bar__logo__text__wrapper">
-            <span className="top__bar__logo__text">Real Estate Care</span>
+            <h1 className="top__bar__logo__text">Real Estate Care</h1>
             <span className="top__bar__logo__sub__text">Caring is in our nature</span>
         </div>
         </Link>

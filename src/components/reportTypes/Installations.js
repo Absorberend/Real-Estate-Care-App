@@ -126,7 +126,7 @@ export default function Installations({filteredReport, reportId, onReportsModalT
         <div className="report__form__file__type__default">
           <label>Foto toevoegen:</label>
           <input type="file" accept="image/*" id="report__file__input" onChange={(e) => uploadImage(e)} />
-          <span><span style={{fontWeight: "600", fontSize: "1em"}}>Tip: </span>zorg ervoor dat de foto goed ingeladen is op uw telefoon alvorens u deze selecteert.</span>
+          <span><span style={{fontWeight: "600", fontSize: "1em"}}>Tip: </span>zorg ervoor dat de foto goed ingeladen is op uw telefoon alvorens u deze kiest.</span>
         </div>
         <div className="reports__submit__button__wrapper">
           <input type="submit" value={loading ? "" : "Inspectie registreren"} disabled={loading} className="reports__button__default" />

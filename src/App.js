@@ -101,6 +101,7 @@ function App() {
     setunAuthLogIn(false);
     setAuthLogIn(false);
     setSideMenuToggle(false);
+    setReportModalOpen(false);
     authValue = Math.floor(Math.random() * 1000000).toString();
   }
 
