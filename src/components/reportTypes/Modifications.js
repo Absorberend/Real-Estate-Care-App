@@ -7,7 +7,7 @@ import BackButton from '../BackButton';
 import { useNavigate } from 'react-router-dom';
 import BeatLoader from "react-spinners/BeatLoader";
 
-export default function Modifications({filteredReport, reportId, onReportsModalToggleClick}) {
+export default function Modifications({filteredReport, reportId, onReportsModalToggleClick, reportModalOpen, onCloseReportsModalClick, onSideMenuClose}) {
   const [streetName, setStreetName] = useState(filteredReport.location.split(', ')[0] || "");
   const [postalCode, setPostalCode] = useState(filteredReport.location.split(', ')[1] || "");
   const [city, setCity] = useState(filteredReport.location.split(', ')[2] || "");
@@ -45,15 +45,22 @@ export default function Modifications({filteredReport, reportId, onReportsModalT
   const handleDamagesSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
+    onSideMenuClose();
 
     const doc = {category: "modifications", location, date, modificationEncountered, carriedOutBy, descriptionModification, action, description, completed: "true"};
+
+    if (reportModalOpen) {
+      onCloseReportsModalClick();
+    }
 
     setTimeout(() => {
       //prevents a bug on mobile where images don't get uploaded when pressing the submit button to quickly after uploading the image.
       put("reports", reportId, doc);
       navigate('/');
       setLoading(false);
-    }, 2000)
+      onSideMenuClose();
+      onCloseReportsModalClick();
+    }, 1500)
   }
 
 
@@ -81,7 +88,7 @@ export default function Modifications({filteredReport, reportId, onReportsModalT
         <div className="report__form__file__type__default">
           <label>Gedocumenteerde modificaties:</label>
           <input type="file" accept="image/*" id="report__file__input" onChange={(e) => uploadImage(e)} />
-          <span><span style={{fontWeight: "600", fontSize: "1em"}}>Tip: </span>zorg ervoor dat de foto goed ingeladen is op je telefoon alvorens je deze selecteert.</span>
+          <span><span style={{fontWeight: "600", fontSize: "1em"}}>Tip: </span>zorg ervoor dat de foto goed ingeladen is op uw telefoon alvorens u deze selecteert.</span>
         </div>
         <div className="report__form__default">
           <label>Uitgevoerd door:</label>

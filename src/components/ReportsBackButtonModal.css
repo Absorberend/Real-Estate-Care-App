@@ -9,7 +9,7 @@
     border: 1px solid black;
     color: black;
     padding: 0.5em;
-    font-size: 1em;
+    font-size: 1.2em;
     font-weight: 600;
 }
 
@@ -45,8 +45,10 @@
 
 .reports__modal__buttons__container button:first-child {
     background-color: red;
+    font-size: 0.6em;
 }
 
 .reports__modal__buttons__container button:nth-child(2) {
     background-color: var(--footer-bg-color);
+    font-size: 0.6em;
 }

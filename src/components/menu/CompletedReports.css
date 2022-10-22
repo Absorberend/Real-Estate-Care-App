@@ -207,13 +207,14 @@
     border-radius: 5px;
     padding: 1em;
     gap: 1em;
-    font-size: 0.8em;
+    font-size: 1em;
 }
 
 .overview__container__delete__modal__buttons__wrapper {
     display: flex;
     flex-direction: row;
     gap: 1em;
+    font-size: 1.5em;
 }
 
 .overview__container__delete__modal__button {

@@ -42,6 +42,8 @@ function App() {
   useEffect(() => {
     window.matchMedia("(min-width: 480px)").addEventListener('change', e => setMatches( e.matches ));
 
+    //For demo purposes HashRouter is used. Without the '#/' in location.href Netlify would handle the page errors instead of this app.
+    //When hosting your own site you would use BrowserRouter and you could skip this code.
     if (!editStartURL) {
       if ( window.location.href !== window.location.href + '#/' && !window.location.href.includes('#')) {
         window.location.replace(window.location.href + '#/');
@@ -156,7 +158,7 @@ function App() {
               <Route path="/CompletedReports" element={<CompletedReports data={data} onCategoryDisplay={handleCategoryDisplay} />}  />
               <Route path="/KnowledgeBase" element={<KnowledgeBase data={data} />}  />       
               <Route path="/Settings" element={<Settings loggedInUser={loggedInUser} onLogout={handleLogOut} />}  />
-              <Route path="/EditReports/:reportId" element={<EditReports data={data} onSideMenuClose={handleSideMenuClose} onCloseReportsModalClick={handleCloseReportsModalClick} onReportsModalToggleClick={handleReportsModalToggleClick} sideMenuToggle={sideMenuToggle}/>}  />           
+              <Route path="/EditReports/:reportId" element={<EditReports data={data} reportModalOpen={reportModalOpen} onSideMenuClose={handleSideMenuClose} onCloseReportsModalClick={handleCloseReportsModalClick} onReportsModalToggleClick={handleReportsModalToggleClick} />}  />           
               <Route path="*" element={<ErrorPage unAuthLogIn={unAuthLogIn} authLogIn={authLogIn} onCloseReportsModalClick={handleCloseReportsModalClick}/>}  />    
             </Routes>
           </main>
