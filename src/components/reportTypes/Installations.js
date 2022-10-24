@@ -34,12 +34,10 @@ export default function Installations({filteredReport, onReportsModalToggleClick
     completed: "true"
   };
 
-  let locationArr = [];
-
   useEffect(() => {
     if (streetName && postalCode && city) {
       setLocation([]);
-      locationArr = [];
+      let locationArr = [];
       locationArr.push(streetName, postalCode, city);
       setLocation(locationArr.join(", "));   
     }
