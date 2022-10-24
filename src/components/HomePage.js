@@ -9,7 +9,7 @@ import settingsIcon from "../assets/settings.svg";
 
 import "./HomePage.css";
 
-export default function HomePage({}) {
+export default function HomePage() {
 
   return (
     <>

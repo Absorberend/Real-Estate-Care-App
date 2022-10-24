@@ -10,6 +10,7 @@ export default function ErrorPage({unAuthLogIn, authLogIn, onCloseReportsModalCl
   useEffect(() => {
     onCloseReportsModalClick();
 
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   
