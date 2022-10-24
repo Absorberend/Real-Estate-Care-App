@@ -1,14 +1,15 @@
-import React, { useState, useEffect } from 'react';
-import useBaseImg from '../../hooks/useBaseImg';
+import React, { useState, useEffect } from "react";
 
-import "./ReportsStyling.css";
-import BackButton from '../BackButton';
 import BeatLoader from "react-spinners/BeatLoader";
 
+import useBaseImg from "../../hooks/useBaseImg";
+import BackButton from "../BackButton";
+import "./ReportsStyling.css";
+
 export default function Modifications({filteredReport, onReportsModalToggleClick, loading, onSubmit}) {
-  const [streetName, setStreetName] = useState(filteredReport.location.split(', ')[0] || "");
-  const [postalCode, setPostalCode] = useState(filteredReport.location.split(', ')[1] || "");
-  const [city, setCity] = useState(filteredReport.location.split(', ')[2] || "");
+  const [streetName, setStreetName] = useState(filteredReport.location.split(", ")[0] || "");
+  const [postalCode, setPostalCode] = useState(filteredReport.location.split(", ")[1] || "");
+  const [city, setCity] = useState(filteredReport.location.split(", ")[2] || "");
   const [location, setLocation] = useState("");
   const [date, setDate] = useState(filteredReport.date || "");
   const [modificationEncountered, setModificationEncountered] = useState(filteredReport.modificationEncountered || "");
@@ -18,7 +19,18 @@ export default function Modifications({filteredReport, onReportsModalToggleClick
   const [description, setDescription] = useState(filteredReport.description || "");
   const { uploadImage, srcEncoded } = useBaseImg();
 
-  const doc = {category: "modifications", location, date, modificationEncountered, carriedOutBy, descriptionModification, action, description, completed: "true"};
+  const doc = {
+    category: "modifications", 
+    location, 
+    date, 
+    modificationEncountered, 
+    carriedOutBy, 
+    descriptionModification, 
+    action, 
+    description, 
+    completed: "true"
+  };
+  
   let locationArr = [];
 
   useEffect(() => {
@@ -40,7 +52,7 @@ export default function Modifications({filteredReport, onReportsModalToggleClick
 
   return (
     <section className="reports__container__default">
-      <BackButton onReportsModalToggleClick={onReportsModalToggleClick}/>
+      <BackButton onReportsModalToggleClick={onReportsModalToggleClick} />
       <h4 className="reports__header__default">Modificaties inventariseren</h4>
       <form className="reports__inspection__form__default" onSubmit={(e) => onSubmit(e, doc)}>
         <div className="report__form__default">
@@ -50,37 +62,91 @@ export default function Modifications({filteredReport, onReportsModalToggleClick
             <label>Plaats:</label>
           </div>
           <div className="report__form__location__default">
-            <input type="text" name="modifications__report" size="25" placeholder="Dummystraat 125" value={streetName} onChange={(e) => setStreetName(e.target.value)} required />
-            <input type="text" name="modifications__report" size="25" placeholder="1234AB" value={postalCode} onChange={(e) => setPostalCode(e.target.value)} required />
-            <input type="text" name="modifications__report" size="25" placeholder="Amsterdam" value={city} onChange={(e) => setCity(e.target.value)} required />
+            <input 
+              type="text" 
+              name="modifications__report" 
+              size="25" 
+              placeholder="Dummystraat 125" 
+              value={streetName} 
+              onChange={(e) => setStreetName(e.target.value)} 
+              required 
+            />
+            <input 
+              type="text" 
+              name="modifications__report" 
+              size="25" 
+              placeholder="1234AB" 
+              value={postalCode} 
+              onChange={(e) => setPostalCode(e.target.value)} 
+              required 
+            />
+            <input 
+              type="text" 
+              name="modifications__report" 
+              size="25" 
+              placeholder="Amsterdam" 
+              value={city} 
+              onChange={(e) => setCity(e.target.value)} 
+              required 
+            />
           </div>
         </div>
         <div className="report__form__default">
           <label>Datum:</label>
-          <input type="datetime-local" name="modifications__report" value={date} onChange={(e) => setDate(e.target.value)} required />
+          <input 
+            type="datetime-local" 
+            name="modifications__report" 
+            value={date} 
+            onChange={(e) => setDate(e.target.value)} 
+            required 
+          />
         </div>
         <div className="report__form__file__type__default">
           <label>Gedocumenteerde modificaties:</label>
-          <input type="file" accept="image/*" id="report__file__input" onChange={(e) => uploadImage(e)} />
-          <span><span style={{fontWeight: "600", fontSize: "1em"}}>Tip: </span>Alvorens u een foto selecteert zorg ervoor dat de fotogallerij op uw telefoon volledig ingeladen is.</span>
+          <input 
+            type="file" 
+            accept="image/*" 
+            id="report__file__input" 
+            onChange={(e) => uploadImage(e)} 
+          />
+          <span>
+            <span style={{fontWeight: "600", fontSize: "1em"}}>Tip: </span>
+            Alvorens u een foto selecteert zorg ervoor dat de fotogallerij op uw telefoon volledig ingeladen is.
+          </span>
         </div>
         <div className="report__form__default">
           <label>Uitgevoerd door:</label>
-          <select name="modifications__report" value={carriedOutBy} onChange={(e) => setCarriedOutBy(e.target.value)} className="report__select__default" required>
+          <select 
+            name="modifications__report" 
+            value={carriedOutBy} 
+            onChange={(e) => setCarriedOutBy(e.target.value)} 
+            className="report__select__default" 
+            required
+          >
             <option value="default" disabled>Maak je keuze</option>
             <option value="huurder">Huurder</option>
             <option value="aannemer">Aannemer</option>
             <option value="onbekend">Onbekend</option>
-
           </select>
         </div>
         <div className="report__form__description__default">
           <label>Beschrijving modificaties:</label>
-          <textarea rows="4" cols="42" value={descriptionModification} onChange={(e) => setDescriptionModification(e.target.value)} />
+          <textarea 
+            rows="4" 
+            cols="42" 
+            value={descriptionModification} 
+            onChange={(e) => setDescriptionModification(e.target.value)} 
+          />
         </div>
         <div className="report__form__default">
           <label>Te ondernemen actie:</label>
-          <select name="modifications__report" value={action} onChange={(e) => setAction(e.target.value)} className="report__select__default" required>
+          <select 
+            name="modifications__report" 
+            value={action} 
+            onChange={(e) => setAction(e.target.value)} 
+            className="report__select__default" 
+            required
+          >
             <option value="default" disabled>Maak je keuze</option>
             <option value="accepteren">Accepteren</option>
             <option value="keuren">Keuren</option>
@@ -90,10 +156,20 @@ export default function Modifications({filteredReport, onReportsModalToggleClick
         </div>
         <div className="report__form__description__default">
           <label>Opmerkingen:</label>
-          <textarea rows="4" cols="42" value={description} onChange={(e) => setDescription(e.target.value)} />
+          <textarea 
+            rows="4" 
+            cols="42" 
+            value={description} 
+            onChange={(e) => setDescription(e.target.value)} 
+          />
         </div>
         <div className="reports__submit__button__wrapper">
-          <input type="submit" value={loading ? "" : "Inspectie registreren"} disabled={loading} className="reports__button__default" />
+          <input 
+            type="submit" 
+            value={loading ? "" : "Inspectie registreren"} 
+            disabled={loading} 
+            className="reports__button__default" 
+          />
           <div className="reports__submit__button__loader">
             <BeatLoader loading={loading} />
           </div>

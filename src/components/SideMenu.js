@@ -1,9 +1,10 @@
-import React, { useRef, useState, useEffect } from 'react'
-import { NavLink, useLocation, useNavigate } from 'react-router-dom';
+import React, { useRef, useState, useEffect } from "react"
 
-import "./SideMenu.css";
-import useOutsideClick from '../hooks/useOutsideClick.js';
+import { NavLink, useLocation, useNavigate } from "react-router-dom";
+
+import useOutsideClick from "../hooks/useOutsideClick.js";
 import closeIcon from "../assets/icon-close.svg";
+import "./SideMenu.css";
 
 
 export default function SideMenu({onSideMenuToggleClick, onOutsideClick, onLogOut, reportModalOpen, onReportsModalToggleClick, data}) {
@@ -19,21 +20,21 @@ export default function SideMenu({onSideMenuToggleClick, onOutsideClick, onLogOu
     }, [data, location])
 
     useOutsideClick(ref, (e) => {
-        if(!e.target.classList.contains('side__bar__menu__wrapper')) {
+        if(!e.target.classList.contains("side__bar__menu__wrapper")) {
             onSideMenuToggleClick();
     
-            //Makes sure that HandleSideMenuToggleClick function doesn't fire at the same time.
+            //Makes sure that HandleSideMenuToggleClick function doesn"t fire at the same time.
            onOutsideClick();
             setTimeout(() =>onOutsideClick(), 200);
             
         } else {
             onOutsideClick();
 
-            //Makes sure that you don't accidentally press main content.
+            //Makes sure that you don"t accidentally press main content.
             setTimeout(() => {
                 onSideMenuToggleClick();
                 onOutsideClick();
-            }, 100);
+            }, 200);
         }
       });
 
@@ -42,10 +43,10 @@ export default function SideMenu({onSideMenuToggleClick, onOutsideClick, onLogOu
         if (matchedURL.length > 0) {
             if (!reportModalOpen) {
                 onSideMenuToggleClick();
-                onReportsModalToggleClick('/Settings');
+                onReportsModalToggleClick("/Settings");
             } else {
                 onSideMenuToggleClick();
-                onReportsModalToggleClick('/Settings');
+                onReportsModalToggleClick("/Settings");
             }
         } else {
             onSideMenuToggleClick();
@@ -62,14 +63,20 @@ export default function SideMenu({onSideMenuToggleClick, onOutsideClick, onLogOu
     <div className="side__bar__menu__wrapper">
         <div className="side__bar__menu__container" ref={ref}>
         <button onClick={onSideMenuToggleClick}>
-            <img src={closeIcon} alt="close icon" className="side__bar__close" />
+            <img 
+                src={closeIcon} 
+                alt="close icon" 
+                className="side__bar__close" 
+            />
         </button>
         <div className="side__bar__links">
             <NavLink 
                 to={matchedURL.length > 0 ? null : "/Settings"} 
                 onClick={handleSideMenuLinkClick}
                 style={({ isActive }) => isActive && matchedURL.length > 0 ? activeStyle : undefined}
-            >Settings</NavLink>
+            >
+                Settings
+            </NavLink>
             <div>
                 <button onClick={() => {
                     onLogOut();

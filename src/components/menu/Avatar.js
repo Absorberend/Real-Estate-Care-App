@@ -1,7 +1,7 @@
-import React, {useEffect, useState} from 'react'
-import useBaseImg from '../../hooks/useBaseImg';
-import useFetch from '../../hooks/useFetch';
+import React, {useEffect, useState} from "react"
 
+import useBaseImg from "../../hooks/useBaseImg";
+import useFetch from "../../hooks/useFetch";
 import "./Avatar.css";
 
 
@@ -35,13 +35,27 @@ export default function Avatar({loggedInUser}) {
         <form className="avatar__form" onSubmit={handleDamagesSubmit}>
           <div className="report__form__file__type__default">
             <label className="avatar__input__label">Avatar wijzigen:</label>
-            <input type="file" accept="image/*" id="report__file__input" onChange={(e) => uploadImage(e)} />
+            <input 
+              type="file" 
+              accept="image/*" 
+              id="report__file__input" 
+              onChange={(e) => uploadImage(e)} 
+            />
           </div>
           <div className="avatar__avatar__wrapper">
-            <img src={srcEncoded ? avatar : loggedInUser[0].avatar} alt="personal avatar" className="avatar__avatar"/>
+            <img 
+              src={srcEncoded ? avatar : loggedInUser[0].avatar} 
+              alt="personal avatar" 
+              className="avatar__avatar" 
+            />
           </div>
           <span className="avatar__user__message">{userMsg}</span>
-          <input type="submit" disabled={submitted} value="Avatar wijzigen" className="reports__button__default avatar__input__button" />
+          <input 
+            type="submit" 
+            disabled={submitted} 
+            value="Avatar wijzigen" 
+            className="reports__button__default avatar__input__button" 
+          />
         </form>
       </div>
   )

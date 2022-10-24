@@ -1,5 +1,6 @@
-import {useState, useEffect} from 'react';
-import { projectFirestore } from '../firebase/config.js';
+import {useState, useEffect} from "react";
+
+import { projectFirestore } from "../firebase/config.js";
 
 export default function useFetch() {
     const [isPending, setIsPending] = useState(false);
@@ -10,9 +11,9 @@ export default function useFetch() {
     useEffect(() => {
         setIsPending(true)
     
-        const unsub = projectFirestore.collection('reports').onSnapshot(snapshot => {
+        const unsub = projectFirestore.collection("reports").onSnapshot(snapshot => {
           if (snapshot.empty) {
-            setError('No reports to load')
+            setError("No reports to load")
             setIsPending(false)
           } else {
             let results = []
@@ -34,9 +35,9 @@ export default function useFetch() {
       useEffect(() => {
         setIsPending(true)
     
-        const unsub = projectFirestore.collection('users').onSnapshot(snapshot => {
+        const unsub = projectFirestore.collection("users").onSnapshot(snapshot => {
           if (snapshot.empty) {
-            setError('No users to load')
+            setError("No users to load")
             setIsPending(false)
           } else {
             let results = []

@@ -1,9 +1,11 @@
-import React, {useState, useEffect} from 'react'
-import { useNavigate } from 'react-router-dom';
-import useFetch from '../../hooks/useFetch';
-import BackButton from '../BackButton';
+import React, {useState, useEffect} from "react"
+
+import { useNavigate } from "react-router-dom";
+
+import useFetch from "../../hooks/useFetch";
+import BackButton from "../BackButton";
+import Avatar from "./Avatar";
 import "./Settings.css";
-import Avatar from './Avatar';
 
 
 export default function Settings({loggedInUser, onLogout}) {
@@ -12,7 +14,7 @@ export default function Settings({loggedInUser, onLogout}) {
   const [passwordMatch, setPasswordMatch] = useState(null);
   const [passwordChanged, setPasswordChanged] = useState(false);
   const [username, setUsername] = useState(loggedInUser[0].loginName);
-  const [userFullName, setUserFullName] = useState(loggedInUser[0].firstName + ' ' + loggedInUser[0].lastName)
+  const [userFullName, setUserFullName] = useState(loggedInUser[0].firstName + " " + loggedInUser[0].lastName)
   const [userMsg, setUserMsg] = useState("");
   const {put} = useFetch();
   const navigate = useNavigate();
@@ -28,7 +30,7 @@ export default function Settings({loggedInUser, onLogout}) {
       setPasswordChanged(true);
       setTimeout(() => {
         onLogout();
-        navigate('/');
+        navigate("/");
       }, 3000);
     }
 
@@ -38,7 +40,8 @@ export default function Settings({loggedInUser, onLogout}) {
   const handleDamagesSubmit = async (e) => {
     e.preventDefault();
 
-    Object.entries(loggedInUser)[0].filter(user => user.password === oldPassword).length > 0 ? setPasswordMatch(true) : setPasswordMatch(false);
+    Object.entries(loggedInUser)[0].filter(user => user.password === oldPassword)
+      .length > 0 ? setPasswordMatch(true) : setPasswordMatch(false);
 
     if (passwordMatch === false) {
       return;
@@ -56,35 +59,68 @@ export default function Settings({loggedInUser, onLogout}) {
           <div>
             <label>Inlog naam:</label>
           </div>
-          <input disabled type="text" name="username" autoComplete="username" value={username} onChange={(e) => setUsername(e.target.value)} />
+          <input 
+            disabled 
+            type="text" 
+            name="username" 
+            autoComplete="username" 
+            value={username} 
+            onChange={(e) => setUsername(e.target.value)} 
+          />
         </div>
         <div>
           <div>
             <label>Volledige naam:</label>
           </div>
-          <input disabled type="text" name="username" autoComplete="username" value={userFullName} onChange={(e) => setUserFullName(e.target.value)} />
+          <input 
+            disabled 
+            type="text" 
+            name="username" 
+            autoComplete="username" 
+            value={userFullName} 
+            onChange={(e) => setUserFullName(e.target.value)} 
+          />
         </div>
 
         <h4>Watchwoord wijzigen:</h4>
         <div>
           <label>Oude wachtwoord:</label>
           <div>
-            <input type="password" name="oude__wachtwoord" size="42" value={oldPassword} onChange={(e) => setOldPassword(e.target.value)} autoComplete="new-password"/>
+            <input 
+              type="password" 
+              name="oude__wachtwoord" 
+              size="42" 
+              value={oldPassword} 
+              onChange={(e) => setOldPassword(e.target.value)} 
+              autoComplete="new-password" 
+            />
           </div>
         </div>
         
         <div>
           <label>Nieuwe wachtwoord:</label>
           <div>
-            <input type="password" name="nieuwe__wachtwoord" size="42" value={newPassword} onChange={(e) => setNewPassword(e.target.value)} autoComplete="new-password"/>
+            <input 
+              type="password" 
+              name="nieuwe__wachtwoord" 
+              size="42" 
+              value={newPassword} 
+              onChange={(e) => setNewPassword(e.target.value)} 
+              autoComplete="new-password" 
+            />
           </div>
         </div>
 
         <span>{userMsg}</span>
 
-        <input type="submit" value="Wachtwoord wijzigen" disabled={passwordChanged} className="reports__button__default" />
+        <input 
+          type="submit" 
+          value="Wachtwoord wijzigen" 
+          disabled={passwordChanged} 
+          className="reports__button__default" 
+        />
       </form>
-      <Avatar loggedInUser={loggedInUser}/>
+      <Avatar loggedInUser={loggedInUser} />
     </div>
   )
 }

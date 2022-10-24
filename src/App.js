@@ -1,24 +1,23 @@
-import React, {useState, useEffect} from 'react';
-import {HashRouter, Routes, Route} from 'react-router-dom';
+import React, {useState, useEffect} from "react";
+
+import {HashRouter, Routes, Route} from "react-router-dom";
 import useDetectKeyboardOpen from "use-detect-keyboard-open";
-
-
-import './App.css';
-
-import useFetch from './hooks/useFetch';
 
 import CompletedReports from "./components/menu/CompletedReports.js";
 import AddReports from "./components/menu/AssignedReports.js";
 import KnowledgeBase from "./components/menu/KnowledgeBase.js";
 import Settings from "./components/menu/Settings.js";
-import LoginPage from './components/LoginPage';
-import ErrorPage from './components/ErrorPage';
+import LoginPage from "./components/LoginPage";
+import ErrorPage from "./components/ErrorPage";
 import TopBar from "./components/TopBar.js";
-import SideMenu from './components/SideMenu';
-import HomePage from './components/HomePage';
-import NavBar from './components/NavBar';
+import SideMenu from "./components/SideMenu";
+import HomePage from "./components/HomePage";
+import NavBar from "./components/NavBar";
 import EditReports from "./components/menu/EditReports.js";
 import ReportsBackButtonModal from "./components/ReportsBackButtonModal.js";
+
+import useFetch from "./hooks/useFetch";
+import "./App.css";
 
 
 let authValue = Math.floor(Math.random() * 1000000).toString(); //auth code for demo purposes only
@@ -40,13 +39,13 @@ function App() {
 
 
   useEffect(() => {
-    window.matchMedia("(min-width: 480px)").addEventListener('change', e => setMatches( e.matches ));
+    window.matchMedia("(min-width: 480px)").addEventListener("change", e => setMatches( e.matches ));
 
-    //For demo purposes HashRouter is used. Without the '#/' in location.href Netlify would handle the page errors instead of this app.
+    //For demo purposes HashRouter is used. Without the "#/" in location.href Netlify would handle the page errors instead of this app.
     //When hosting your own site you would use BrowserRouter and you could skip this code.
     if (!editStartURL) {
-      if ( window.location.href !== window.location.href + '#/' && !window.location.href.includes('#')) {
-        window.location.replace(window.location.href + '#/');
+      if ( window.location.href !== window.location.href + "#/" && !window.location.href.includes("#")) {
+        window.location.replace(window.location.href + "#/");
         editStartURL = true;
       }
     }
@@ -120,14 +119,14 @@ function App() {
   }
 
   const handleCategoryDisplay = (category) => {
-    if (category === 'damages') {
-      return 'Schade';
-    } else if (category === 'modifications') {
-      return 'Modificaties';
-    } else if (category === 'installations') {
-      return 'Installaties';
-    } else if (category === 'maintenance') {
-      return 'Onderhoud';
+    if (category === "damages") {
+      return "Schade";
+    } else if (category === "modifications") {
+      return "Modificaties";
+    } else if (category === "installations") {
+      return "Installaties";
+    } else if (category === "maintenance") {
+      return "Onderhoud";
     }
   }
 
@@ -144,38 +143,126 @@ function App() {
   return (
     <>
       <HashRouter>
-        {unAuthLogIn && authLogIn && <>
-          <header className="app__header">
-            <TopBar onSideMenuToggleClick={handleSideMenuToggleClick} onSideMenuClose={handleSideMenuClose} loggedInUser={loggedInUser} onReportsModalToggleClick={handleReportsModalToggleClick} data={data} />
-            {sideMenuToggle && <SideMenu onSideMenuToggleClick={handleSideMenuToggleClick} onOutsideClick={handleOutsideClick} onLogOut={handleLogOut} reportModalOpen={reportModalOpen} onReportsModalToggleClick={handleReportsModalToggleClick} data={data} />}
-            <div className="app__reports__modal__container__wrapper">
-                {reportModalOpen && <ReportsBackButtonModal url={redirectURL} onReportsModalToggleClick={handleReportsModalToggleClick}/>}
-            </div>
-          </header>
-          <main className="app__main">
+        {unAuthLogIn && authLogIn && (
+          <>
+            <header className="app__header">
+              <TopBar 
+                onSideMenuToggleClick={handleSideMenuToggleClick} 
+                onSideMenuClose={handleSideMenuClose} 
+                loggedInUser={loggedInUser} 
+                onReportsModalToggleClick={handleReportsModalToggleClick} 
+                data={data} 
+              />
+                {sideMenuToggle && (
+                  <SideMenu 
+                    onSideMenuToggleClick={handleSideMenuToggleClick} 
+                    onOutsideClick={handleOutsideClick} 
+                    onLogOut={handleLogOut} 
+                    reportModalOpen={reportModalOpen} 
+                    onReportsModalToggleClick={handleReportsModalToggleClick} 
+                    data={data} 
+                  />
+                )}
+              <div className="app__reports__modal__container__wrapper">
+                  {reportModalOpen && (
+                    <ReportsBackButtonModal url={redirectURL} onReportsModalToggleClick={handleReportsModalToggleClick} />
+                  )}
+              </div>
+            </header>
+            <main className="app__main">
+              <Routes>
+                <Route path="/" element={<HomePage />} />
+                <Route 
+                  path="/AssignedReports" 
+                  element={
+                    <AddReports 
+                      data={data} 
+                      loggedInUser={loggedInUser} 
+                      onCategoryDisplay={handleCategoryDisplay} 
+                    />
+                  } 
+                />
+                <Route 
+                  path="/CompletedReports" 
+                  element={
+                    <CompletedReports 
+                      data={data} 
+                      onCategoryDisplay={handleCategoryDisplay} 
+                    />
+                  } 
+                />
+                <Route path="/KnowledgeBase" element={<KnowledgeBase data={data} />} />       
+                <Route 
+                  path="/Settings" 
+                  element={
+                    <Settings 
+                      loggedInUser={loggedInUser} 
+                      onLogout={handleLogOut} 
+                    />
+                  }  
+                />
+                <Route 
+                  path="/EditReports/:reportId" 
+                  element={
+                    <EditReports 
+                      data={data} 
+                      reportModalOpen={reportModalOpen} 
+                      onSideMenuClose={handleSideMenuClose} 
+                      onCloseReportsModalClick={handleCloseReportsModalClick} 
+                      onReportsModalToggleClick={handleReportsModalToggleClick} 
+                    />
+                  } 
+                />           
+                <Route 
+                  path="*" 
+                  element={
+                    <ErrorPage 
+                      unAuthLogIn={unAuthLogIn} 
+                      authLogIn={authLogIn} 
+                      onCloseReportsModalClick={handleCloseReportsModalClick}
+                    />
+                  } 
+                />    
+              </Routes>
+            </main>
+            {!matches && (
+              isKeyboardOpen ? "" : <footer className="app__footer">
+                <NavBar 
+                  onSideMenuClose={handleSideMenuClose} 
+                  data={data} 
+                  onReportsModalToggleClick={handleReportsModalToggleClick} 
+                />
+              </footer>
+            )}
+            {matches && (
+              <footer className="app__footer">
+              <NavBar 
+                onSideMenuClose={handleSideMenuClose} 
+                data={data} 
+                onReportsModalToggleClick={handleReportsModalToggleClick} 
+              />
+            </footer>
+            )}
+          </>
+        )}
+
+        {!authLogIn && (
+          <>
             <Routes>
-              <Route path="/" element={<HomePage />} />
-              <Route path="/AssignedReports" element={<AddReports data={data} loggedInUser={loggedInUser} onCategoryDisplay={handleCategoryDisplay} />} />
-              <Route path="/CompletedReports" element={<CompletedReports data={data} onCategoryDisplay={handleCategoryDisplay} />}  />
-              <Route path="/KnowledgeBase" element={<KnowledgeBase data={data} />}  />       
-              <Route path="/Settings" element={<Settings loggedInUser={loggedInUser} onLogout={handleLogOut} />}  />
-              <Route path="/EditReports/:reportId" element={<EditReports data={data} reportModalOpen={reportModalOpen} onSideMenuClose={handleSideMenuClose} onCloseReportsModalClick={handleCloseReportsModalClick} onReportsModalToggleClick={handleReportsModalToggleClick} />}  />           
-              <Route path="*" element={<ErrorPage unAuthLogIn={unAuthLogIn} authLogIn={authLogIn} onCloseReportsModalClick={handleCloseReportsModalClick}/>}  />    
+              <Route path="/" element={
+                <LoginPage 
+                  onLoginSubmit={handleLoginSubmit} 
+                  unAuthLogIn={unAuthLogIn} 
+                  authValue={authValue} 
+                  onAuthSubmit={handleAuthSubmit} 
+                  loginFailed={loginFailed} 
+                />
+              } 
+            />
+              <Route path="*" element={<ErrorPage onCloseReportsModalClick={handleCloseReportsModalClick}/>} />
             </Routes>
-          </main>
-          {!matches && isKeyboardOpen ? "" : <footer className="app__footer">
-            <NavBar onSideMenuClose={handleSideMenuClose} data={data} reportModalOpen={reportModalOpen} onReportsModalToggleClick={handleReportsModalToggleClick}/>
-          </footer>}
-          {matches && <footer className="app__footer">
-            <NavBar onSideMenuClose={handleSideMenuClose} data={data} reportModalOpen={reportModalOpen} onReportsModalToggleClick={handleReportsModalToggleClick}/>
-          </footer>}
-        </>}
-        {!authLogIn && <>
-          <Routes>
-            <Route path="/" element={<LoginPage onLoginSubmit={handleLoginSubmit} unAuthLogIn={unAuthLogIn} authValue={authValue} onAuthSubmit={handleAuthSubmit} loginFailed={loginFailed} />} />
-            <Route path="*" element={<ErrorPage onCloseReportsModalClick={handleCloseReportsModalClick}/>} />
-          </Routes>
-        </>}
+          </>
+        )}
       </HashRouter>
     </>
   );

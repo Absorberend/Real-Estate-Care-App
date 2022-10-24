@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from 'react'
-import { NavLink, useLocation} from 'react-router-dom'
+import React, { useEffect, useState } from "react"
 
+import { NavLink, useLocation} from "react-router-dom"
 
 import "./NavBar.css";
 import bookIcon from "../assets/book.svg";
@@ -41,11 +41,11 @@ export default function NavBar({onSideMenuClose, data, onReportsModalToggleClick
                 style={({ isActive }) => isActive && matchedURL.length > 0 ? activeStyle : undefined}
             >
                 <img 
-                src={reportIcon} 
-                alt="report icon" 
+                    src={reportIcon} 
+                    alt="report icon" 
                 />
                 <span className="nav__footer__link__hidden">
-                Assigned Reports
+                    Assigned Reports
                 </span>
             </NavLink>
 
@@ -57,11 +57,11 @@ export default function NavBar({onSideMenuClose, data, onReportsModalToggleClick
                 style={({ isActive }) => isActive && matchedURL.length > 0 ? activeStyle : undefined}
             >
                 <img 
-                src={checkIcon} 
-                alt="checked report icon" 
+                    src={checkIcon} 
+                    alt="checked report icon" 
                 />
                 <span className="nav__footer__link__hidden">
-                Completed Reports
+                    Completed Reports
                 </span>
             </NavLink>
 
@@ -73,11 +73,11 @@ export default function NavBar({onSideMenuClose, data, onReportsModalToggleClick
                 style={({ isActive }) => isActive && matchedURL.length > 0 ? activeStyle : undefined}
             >
                 <img 
-                src={bookIcon} 
-                alt="book icon" 
+                    src={bookIcon} 
+                    alt="book icon" 
                 />    
                 <span className="nav__footer__link__hidden">
-                Knowledge Base
+                    Knowledge Base
                 </span>
             </NavLink>
         </div>
