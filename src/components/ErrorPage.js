@@ -31,7 +31,7 @@ export default function ErrorPage({unAuthLogIn, authLogIn, onCloseReportsModalCl
       <main className="error__page__main">
         <h2>Oops!</h2>
         <h4>Sorry, it looks like we can't find this page anymore.</h4>
-        <p>We have done our best, but it appears as if we can't find the page. Maybe this page is moved or it doesn"t exist.</p>
+        <p>We have done our best, but it appears as if we can't find the page. Maybe this page is moved or it doesn't exist.</p>
         <p>You can always go back to our <Link to="/" className="error__page__link">homepage</Link>.</p>
       </main>
     </div>
