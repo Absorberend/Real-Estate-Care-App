@@ -163,7 +163,7 @@ export default function CompletedReports({data, onCategoryDisplay}) {
         <BackButton />
       </div>}
       <section className="completed__reports__container">
-        <h2>Uitgevoerde rapportages:</h2>
+        <h2>Uitgevoerde rapportages</h2>
         <div className="completed__reports__legenda">
           <span>Datum</span>
           <span>Type</span>

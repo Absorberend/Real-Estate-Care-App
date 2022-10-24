@@ -36,7 +36,7 @@ export default function KnowledgeBase({data}) {
   return (
     <section className="knowledge__base__container">
       <BackButton />
-      <h2>Kennisbank:</h2>
+      <h2>Kennisbank</h2>
       <div className="knowledge__base__button__container">
         <h4>Test Procedures:</h4>
         <button 

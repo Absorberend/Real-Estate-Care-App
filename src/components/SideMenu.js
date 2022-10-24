@@ -18,12 +18,23 @@ export default function SideMenu({onSideMenuToggleClick, onOutsideClick, onLogOu
         }
     }, [data, location])
 
-    useOutsideClick(ref, () => {
-        onSideMenuToggleClick();
+    useOutsideClick(ref, (e) => {
+        if(!e.target.classList.contains('side__bar__menu__wrapper')) {
+            onSideMenuToggleClick();
     
-        //Makes sure that HandleSideMenuToggleClick function doesn't fire at the same time.
-       onOutsideClick();
-        setTimeout(() =>onOutsideClick(), 200);
+            //Makes sure that HandleSideMenuToggleClick function doesn't fire at the same time.
+           onOutsideClick();
+            setTimeout(() =>onOutsideClick(), 200);
+            
+        } else {
+            onOutsideClick();
+
+            //Makes sure that you don't accidentally press main content.
+            setTimeout(() => {
+                onSideMenuToggleClick();
+                onOutsideClick();
+            }, 100);
+        }
       });
 
     const handleSideMenuLinkClick = () => {

@@ -40,7 +40,7 @@ export default function TopBar({onSideMenuToggleClick, onSideMenuClose, loggedIn
             <span className="top__bar__logo__sub__text">Caring is in our nature</span>
         </div>
         </Link>
-        <button className="top__bar__profile__container" onClick={onSideMenuToggleClick}>
+        <button className="top__bar__profile__container" onClick={(e) => onSideMenuToggleClick(e)}>
         <img 
             src={loggedInUser[0].avatar} 
             alt="avatar" 
