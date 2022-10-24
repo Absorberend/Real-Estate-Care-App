@@ -154,7 +154,7 @@ function App() {
           </header>
           <main className="app__main">
             <Routes>
-              <Route path="/" element={<HomePage loggedInUser={loggedInUser} data={data} onCategoryDisplay={handleCategoryDisplay} />} />
+              <Route path="/" element={<HomePage />} />
               <Route path="/AssignedReports" element={<AddReports data={data} loggedInUser={loggedInUser} onCategoryDisplay={handleCategoryDisplay} />} />
               <Route path="/CompletedReports" element={<CompletedReports data={data} onCategoryDisplay={handleCategoryDisplay} />}  />
               <Route path="/KnowledgeBase" element={<KnowledgeBase data={data} />}  />       

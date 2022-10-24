@@ -31,7 +31,7 @@ export default function EditReports({data, onReportsModalToggleClick, onCloseRep
       }
   
       setTimeout(() => {
-        //prevents a bug on mobile where images don't get uploaded when pressing the submit button to quickly after uploading the image.
+        //The timeout prevents a bug on mobile where images don't get uploaded when pressing the submit button to quickly after uploading the image.
         put("reports", reportId, doc);
         navigate('/');
         setLoading(false);
