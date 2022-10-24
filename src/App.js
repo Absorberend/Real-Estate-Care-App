@@ -35,7 +35,7 @@ function App() {
   const [matches, setMatches] = useState(window.matchMedia("(min-width: 500px)").matches);
   const isKeyboardOpen = useDetectKeyboardOpen(300, null);
 
-  let editStartURL = false;
+
 
 
   useEffect(() => {
@@ -43,11 +43,8 @@ function App() {
 
     //For demo purposes HashRouter is used. Without the "#/" in location.href Netlify would handle the page errors instead of this app.
     //When hosting your own site you would use BrowserRouter and you could skip this code.
-    if (!editStartURL) {
       if ( window.location.href !== window.location.href + "#/" && !window.location.href.includes("#")) {
         window.location.replace(window.location.href + "#/");
-        editStartURL = true;
-      }
     }
   }, []);
 
