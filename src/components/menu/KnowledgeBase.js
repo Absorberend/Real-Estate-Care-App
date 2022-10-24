@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react'
+import React, {useState} from 'react'
 
 import "./KnowledgeBase.css";
 
@@ -6,7 +6,6 @@ import chevronDown from "../../assets/chevron-down.svg";
 import chevronUp from "../../assets/chevron-up.svg";
 
 import BackButton from '../BackButton'
-import { useLocation } from 'react-router-dom';
 
 export default function KnowledgeBase({data}) {
   const [expandType, setExpandType] = useState(false);

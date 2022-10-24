@@ -8,7 +8,7 @@ import useFetch from '../../hooks/useFetch';
 
 
 export default function AssignedReports({data, loggedInUser, onCategoryDisplay}) {
-  const { loading, error} = useFetch();
+  const { isPending, error} = useFetch();
   const navigate = useNavigate();
   let viewAssignedReport = [];
 
@@ -38,8 +38,8 @@ export default function AssignedReports({data, loggedInUser, onCategoryDisplay})
           <button className="assigned__reports__button__hidden"></button>
         </div>
         <div className="assigned__reports__container">
-          {loading && <p className="assigned__reports__error__loading__default">Loading...</p>}
-          {!loading && viewAssignedReport}
+          {isPending && <p className="assigned__reports__error__loading__default">Loading...</p>}
+          {!isPending && viewAssignedReport}
           {error && <p className="assigned__reports__error__loading__default">There was an error loading the reports.</p>}
           {viewAssignedReport.length === 0 && <p className="assigned__reports__error__loading__default">Er zijn geen rapporten aan jou toegewezen op dit moment.</p>}
         </div>

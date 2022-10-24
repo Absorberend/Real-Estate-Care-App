@@ -1,13 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import useBaseImg from '../../hooks/useBaseImg';
-import useFetch from '../../hooks/useFetch';
 
 import "./ReportsStyling.css";
 import BackButton from '../BackButton';
-import { useNavigate } from 'react-router-dom';
 import BeatLoader from "react-spinners/BeatLoader";
 
-export default function Damages({filteredReport, reportId, onReportsModalToggleClick, reportModalOpen, onCloseReportsModalClick, onSideMenuClose}) {
+export default function Damages({filteredReport, onReportsModalToggleClick, loading, onSubmit}) {
   const [streetName, setStreetName] = useState(filteredReport.location.split(', ')[0] || "");
   const [postalCode, setPostalCode] = useState(filteredReport.location.split(', ')[1] || "");
   const [city, setCity] = useState(filteredReport.location.split(', ')[2] || "");
@@ -18,11 +16,9 @@ export default function Damages({filteredReport, reportId, onReportsModalToggleC
   const [acuteActionRequired, setAcuteActionRequired] = useState(filteredReport.acuteActionRequired || "");
   const [description, setDescription] = useState(filteredReport.description || "");
   const [pictures, setPictures] = useState(filteredReport.pictures || "");
-  const [loading, setLoading] = useState(false);
-  const { put } = useFetch();
   const { uploadImage, srcEncoded } = useBaseImg();
-  const navigate = useNavigate();
 
+  const doc = {category: "damages", location, date, newDamages, damageType, acuteActionRequired, description, pictures, completed: "true"};
   let locationArr = [];
   
   useEffect(() => {
@@ -42,32 +38,11 @@ export default function Damages({filteredReport, reportId, onReportsModalToggleC
     }
   }, [srcEncoded]) 
 
-  const handleDamagesSubmit = async (e) => {
-    e.preventDefault();
-    setLoading(true);
-    onSideMenuClose();
-
-    const doc = {category: "damages", location, date, newDamages, damageType, acuteActionRequired, description, pictures, completed: "true"};
-
-    if (reportModalOpen) {
-      onCloseReportsModalClick();
-    }
-
-    setTimeout(() => {
-      //prevents a bug on mobile where images don't get uploaded when pressing the submit button to quickly after uploading the image.
-      put("reports", reportId, doc);
-      navigate('/');
-      setLoading(false);
-      onSideMenuClose();
-      onCloseReportsModalClick();
-    }, 1500)
-  }
-
   return (
     <section className="reports__container__default">
       <BackButton onReportsModalToggleClick={onReportsModalToggleClick}/>
       <h4 className="reports__header__default">Schade opnemen</h4>
-      <form className="reports__inspection__form__default" onSubmit={handleDamagesSubmit} >
+      <form className="reports__inspection__form__default" onSubmit={(e) => onSubmit(e, doc)} >
         <div className="report__form__default">
           <div className="report__form__location__container__default">
             <label>Straatnaam:</label>
@@ -129,12 +104,12 @@ export default function Damages({filteredReport, reportId, onReportsModalToggleC
         <div className="report__form__file__type__default">
           <label>Foto toevoegen:</label>
           <input type="file" accept="image/*" id="report__file__input" onChange={(e) => uploadImage(e)} />
-          <span><span style={{fontWeight: "600", fontSize: "1em"}}>Tip: </span>zorg ervoor dat de foto goed ingeladen is op uw telefoon alvorens u deze kiest.</span>
+          <span><span style={{fontWeight: "600", fontSize: "1em"}}>Tip: </span>Alvorens u een foto selecteert zorg ervoor dat de fotogallerij op uw telefoon volledig ingeladen is.</span>
         </div>
         <div className="reports__submit__button__wrapper">
           <input type="submit" value={loading ? "" : "Inspectie registreren"} disabled={loading} className="reports__button__default" />
           <div className="reports__submit__button__loader">
-            <BeatLoader loading={loading} />
+          <BeatLoader loading={loading} />
           </div>
         </div>
       </form>

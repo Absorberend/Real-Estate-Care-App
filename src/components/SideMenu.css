@@ -32,6 +32,7 @@
 .side__bar__close {
     width: 1.5em;
     height: 1.5em;
+    cursor: pointer;
 }
 
 .side__bar__links {
@@ -49,6 +50,7 @@
     font-weight: 500;
     font-size: 1.2em;
     opacity: 0.6;
+    cursor: pointer;
 }
 
 .side__bar__links div {

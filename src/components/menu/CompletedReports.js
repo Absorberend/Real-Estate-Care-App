@@ -14,7 +14,7 @@ export default function CompletedReports({data, onCategoryDisplay}) {
   const [filteredReport, setFilteredReport] = useState([]);
   const [deleteModal, setDeleteModal] = useState(false);
   const [didExpand, setDidExpand] = useState(false);
-  const {loading, error, del} = useFetch();
+  const {isPending, error, del} = useFetch();
   const locationURL = useLocation();
   const navigate = useNavigate();
   let viewReport = [];
@@ -171,8 +171,8 @@ export default function CompletedReports({data, onCategoryDisplay}) {
           <span>Plaats</span>
           <span className="completed__reports__legenda__hidden">Hidden</span>
         </div>
-        {loading && <div className="completed__reports__button__container completed__reports__loading__error__messages">Loading...</div>}
-        {!loading && !error && <div className="completed__reports__button__container">
+        {isPending && <div className="completed__reports__button__container completed__reports__loading__error__messages">Loading...</div>}
+        {!isPending && !error && <div className="completed__reports__button__container">
           {viewReport}
         </div>}
         {error && <div className="completed__reports__button__container completed__reports__loading__error__messages">
