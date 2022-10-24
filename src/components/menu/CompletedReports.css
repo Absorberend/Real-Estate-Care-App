@@ -28,13 +28,14 @@
 .completed__reports__container h2 {
     padding: 0.2em;
     margin: 0;
+    padding-block-end: 1em;
 }
 
 .completed__reports__legenda {
     display: flex;
     width: 100%;
     padding: 0 2em 0 1em;
-    font-family: 'Quicksand', sans-serif;
+    font-family: 'Rajdhani', sans-serif;
     justify-content: space-between;
     font-weight: 600;
     font-size: 1em;

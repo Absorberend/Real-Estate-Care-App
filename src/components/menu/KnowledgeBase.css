@@ -9,6 +9,7 @@
 .knowledge__base__container h2 {
     text-align: center;
     margin: 0;
+    padding-block-end: 1em;
 }
 
 .knowledge__base__button__container {
