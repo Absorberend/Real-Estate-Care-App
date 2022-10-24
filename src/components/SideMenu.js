@@ -34,7 +34,7 @@ export default function SideMenu({onSideMenuToggleClick, onOutsideClick, onLogOu
             setTimeout(() => {
                 onSideMenuToggleClick();
                 onOutsideClick();
-            }, 200);
+            }, 250);
         }
       });
 

@@ -180,8 +180,8 @@ export default function CompletedReports({data, onCategoryDisplay}) {
                   {deleteModal && (
                     <div className="overview__container__delete__modal__wrapper">
                       <div className="overview__container__delete__modal">
-                        <span>Weet u zeker dat u dit inspectierapport wilt verwijderen?</span>
-                        <span>Het rapport wordt volledig verwijderd en is niet meer terug te halen.</span>
+                        <span>Weet u zeker dat u dit inspectierapport definitief wilt verwijderen?</span>
+                        <span>U kunt deze actie niet ongedaan maken.</span>
                         <div className="overview__container__delete__modal__buttons__wrapper">
                           <button 
                             onClick={() => {

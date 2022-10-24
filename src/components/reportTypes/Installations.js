@@ -19,6 +19,7 @@ export default function Installations({filteredReport, onReportsModalToggleClick
   const [description, setDescription] = useState(filteredReport.description || "");
   const [pictures, setPictures] = useState(filteredReport.pictures || "");
   const { uploadImage, srcEncoded } = useBaseImg();
+  const sanitizeUrl = require("@braintree/sanitize-url").sanitizeUrl;
 
   const doc = {
     category: "installations", 
@@ -139,7 +140,7 @@ export default function Installations({filteredReport, onReportsModalToggleClick
               size="42" 
               placeholder="https://www.testprocedure.nl/elektra" 
               value={testProcedure} 
-              onChange={(e) => setTestProcedure(e.target.value)} 
+              onChange={(e) => setTestProcedure(sanitizeUrl(e.target.value))} 
             />
           </div>
         </div>

@@ -209,6 +209,7 @@
     padding: 1em;
     gap: 1em;
     font-size: 1em;
+    text-align: start;
 }
 
 .overview__container__delete__modal__buttons__wrapper {
