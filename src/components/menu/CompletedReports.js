@@ -146,7 +146,7 @@ export default function CompletedReports({data, onCategoryDisplay}) {
                   {report?.costIndication && (
                     <div className="completed__reports__overview__expanded__reports">
                       <span>Kostenindicatie:</span>
-                      <span>{report.costIndication}</span> 
+                      <span>&euro;{report.costIndication}</span> 
                     </div>
                   )}
                   {report?.action && (

@@ -25,7 +25,7 @@ export default function SideMenu({onSideMenuToggleClick, onOutsideClick, onLogOu
     
             //Makes sure that HandleSideMenuToggleClick function doesn"t fire at the same time.
            onOutsideClick();
-            setTimeout(() =>onOutsideClick(), 200);
+            setTimeout(() =>onOutsideClick(), 175);
             
         } else {
             onOutsideClick();
