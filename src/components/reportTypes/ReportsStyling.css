@@ -184,8 +184,9 @@ input[type=text], input[type=datetime-local], input[type=password], select, text
     font-family: 'Rajdhani', sans-serif;
     font-size: 1em;
     font-weight: 500;
+    color: black;
 }
 
 input[type=datetime-local] {
-    min-width: 14.5em;
+    width: 14.5em;
 }
