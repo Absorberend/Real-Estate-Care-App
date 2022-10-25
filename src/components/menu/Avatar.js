@@ -34,11 +34,11 @@ export default function Avatar({loggedInUser}) {
       <div className="avatar__container">
         <form className="avatar__form" onSubmit={handleDamagesSubmit}>
           <div className="report__form__file__type__default">
-            <label className="avatar__input__label">Avatar wijzigen:</label>
+            <label className="avatar__input__label" htmlFor="avatar__file__input">Avatar wijzigen:</label>
             <input 
               type="file" 
               accept="image/*" 
-              id="report__file__input" 
+              id="avatar__file__input" 
               onChange={(e) => uploadImage(e)} 
             />
           </div>

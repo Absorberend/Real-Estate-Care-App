@@ -78,10 +78,15 @@ export default function SideMenu({onSideMenuToggleClick, onOutsideClick, onLogOu
                 Settings
             </NavLink>
             <div>
-                <button onClick={() => {
-                    onLogOut();
-                    navigate("/");  
-                }}>Logout</button>
+                <button 
+                    onClick={() => {
+                        onLogOut();
+                        navigate("/");  
+                    }}
+                    className="side__bar__logout__button"
+                >
+                    Logout
+                </button>
             </div>
         </div>
         </div>

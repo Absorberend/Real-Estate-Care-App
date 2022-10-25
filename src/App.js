@@ -117,13 +117,13 @@ function App() {
 
   const handleCategoryDisplay = (category) => {
     if (category === "damages") {
-      return "Schade";
+      return "S";
     } else if (category === "modifications") {
-      return "Modificaties";
+      return "M";
     } else if (category === "installations") {
-      return "Installaties";
+      return "I";
     } else if (category === "maintenance") {
-      return "Onderhoud";
+      return "O";
     }
   }
 

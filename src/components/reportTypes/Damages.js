@@ -53,18 +53,19 @@ export default function Damages({filteredReport, onReportsModalToggleClick, load
   return (
     <section className="reports__container__default">
       <BackButton onReportsModalToggleClick={onReportsModalToggleClick} />
-      <h4 className="reports__header__default">Schade opnemen</h4>
+      <h2 className="reports__header__default">Schade opnemen</h2>
       <form className="reports__inspection__form__default" onSubmit={(e) => onSubmit(e, doc)} >
         <div className="report__form__default">
           <div className="report__form__location__container__default">
-            <label>Straatnaam:</label>
-            <label>Postcode:</label>
-            <label>Plaats:</label>
+            <label htmlFor="damages__report__street__name">Straatnaam:</label>
+            <label htmlFor="damages__report__postal__code">Postcode:</label>
+            <label htmlFor="damages__report__city">Plaats:</label>
           </div>
           <div className="report__form__location__default">
             <input 
               type="text" 
               name="damages__report" 
+              id="damages__report__street__name" 
               size="25" 
               placeholder="Dummystraat 125" 
               value={streetName} 
@@ -73,7 +74,8 @@ export default function Damages({filteredReport, onReportsModalToggleClick, load
             />
             <input 
               type="text" 
-              name="damages__report" 
+              name="damages__report"
+              id="damages__report__postal__code" 
               size="25" 
               placeholder="1234AB" 
               value={postalCode} 
@@ -83,6 +85,7 @@ export default function Damages({filteredReport, onReportsModalToggleClick, load
             <input 
               type="text" 
               name="damages__report" 
+              id="damages__report__city" 
               size="25" 
               placeholder="Amsterdam" 
               value={city} 
@@ -92,69 +95,77 @@ export default function Damages({filteredReport, onReportsModalToggleClick, load
           </div>
         </div>
         <div className="report__form__default">
-          <label>Datum:</label>
+          <label htmlFor="damages__report__date">Datum:</label>
           <input 
             type="datetime-local" 
             name="damages__report" 
+            id="damages__report__date" 
             value={date} 
             onChange={(e) => setDate(e.target.value)} 
             required 
           />
         </div>
         <div className="report__form__default">
-          <label>Nieuwe schade:</label>
-          <div className="report__form__radio__default__container" >
+          <label >Nieuwe schade:</label>
+          <fieldset className="report__form__radio__default__container" >
+            <legend>Nieuwe schade</legend>
             <div className="report__form__radio__default">
-              <label>Ja</label>
+              <label htmlFor="damages__report__new__damages__yes">Ja</label>
               <input 
                 type="radio" 
                 name="damages__report" 
+                id="damages__report__new__damages__yes" 
                 checked={newDamages === "ja"} 
                 value="ja" 
                 onChange={(e) => setNewDamages(e.target.value)} 
               />
             </div>
             <div className="report__form__radio__default">
-              <label>Nee</label>
+              <label htmlFor="damages__report__new__damages__no">Nee</label>
               <input 
                 type="radio" 
-                name="damages__report" 
+                name="damages__report"
+                id="damages__report__new__damages__no" 
                 checked={newDamages === "nee"} 
                 value="nee" 
                 onChange={(e) => setNewDamages(e.target.value)} 
               />
             </div>
-          </div>
+          </fieldset>
         </div>
         <div className="report__form__default">
           <label>Acute actie vereist:</label>
-          <div className="report__form__radio__default__container" >
+          <fieldset className="report__form__radio__default__container" >
+            <legend>Acute actie vereist</legend>
             <div className="report__form__radio__default">
-              <label>Ja</label>
+              <label htmlFor="damages__report__acute__yes">Ja</label>
               <input 
                 type="radio" 
-                name="damages__report__acute" 
+                name="damages__report" 
+                id="damages__report__acute__yes" 
                 checked={acuteActionRequired === "ja"} 
                 value="ja" 
                 onChange={(e) => setAcuteActionRequired(e.target.value)} 
               />
             </div>
             <div className="report__form__radio__default">
-              <label>Nee</label>
+              <label htmlFor="damages__report__acute__no">Nee</label>
               <input 
                 type="radio" 
-                name="damages__report__acute" 
+                name="damages__report" 
+                id="damages__report__acute__no" 
                 checked={acuteActionRequired === "nee"} 
                 value="nee" 
                 onChange={(e) => setAcuteActionRequired(e.target.value)} 
               />
             </div>
-          </div>
+          </fieldset>
         </div>
         <div className="report__form__default">
-          <label>Soort Schade:</label>
+          <label htmlFor="damages__report__damage__type">Soort Schade:</label>
           <select 
             name="damages__report" 
+            id="damages__report__damage__type" 
             value={damageType} 
             onChange={(e) => setDamageType(e.target.value)} 
             className="report__select__default" 
@@ -170,20 +181,23 @@ export default function Damages({filteredReport, onReportsModalToggleClick, load
           </select>
         </div>
         <div className="report__form__description__default">
-          <label>Omschrijving:</label>
+          <label htmlFor="damages__report__description">Omschrijving:</label>
           <textarea 
             rows="4" 
             cols="42" 
+            name="damages__report"
+            id="damages__report__description"
             value={description} 
             onChange={(e) => setDescription(e.target.value)} 
           />
         </div>
         <div className="report__form__file__type__default">
-          <label>Foto toevoegen:</label>
+          <label htmlFor="damages__report__add__picture">Foto toevoegen:</label>
           <input 
             type="file" 
             accept="image/*" 
-            id="report__file__input" 
+            id="damages__report__add__picture" 
+            name="damages__report"
             onChange={(e) => uploadImage(e)} 
           />
           <span>

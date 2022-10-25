@@ -11,7 +11,7 @@
     text-align: center;
 }
 
-.settings__container h4 {
+.settings__container h3 {
     padding-block-start: 1em;
     margin: 0;
 }
@@ -31,4 +31,8 @@
 .settings__form span {
     max-width: 15em;
     margin: 0 auto;
+}
+
+.settings__form input[type=password] {
+    max-width: 14.75em;
 }

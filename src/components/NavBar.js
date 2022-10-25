@@ -32,7 +32,7 @@ export default function NavBar({onSideMenuClose, data, onReportsModalToggleClick
 
   return (
     <>
-        <div className="nav__footer">
+        <div className="nav__footer" role="navigation" aria-label="main">
             <NavLink 
                 to={matchedURL.length > 0 ? null : "/AssignedReports"} 
                 className="nav__footer__link__default"

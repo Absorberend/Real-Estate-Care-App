@@ -19,61 +19,56 @@ export default function KnowledgeBase({data}) {
   const filteredCoolingEL = filteredCooling.map(report => (
     <div key={report.id} className="knowledge__base__overview__default">
       <span>Test prodecure:</span>
-      <a 
-        href={report.testProcedure} 
-        target="_blank" 
-        rel="noopener noreferrer"
+      <iframe 
+        src={report.testProcedure} 
+        width="100%"
+        height="500px"
       >
-        {report.testProcedure}
-      </a>
+      </iframe>
     </div>
   ))
   const filteredHeatingEL = filteredHeating.map(report => (
     <div key={report.id} className="knowledge__base__overview__default">
       <span>Test prodecure:</span>
-      <a 
-        href={report.testProcedure} 
-        target="_blank" 
-        rel="noopener noreferrer"
+      <iframe 
+        src={report.testProcedure} 
+        width="100%"
+        height="500px"
       >
-        {report.testProcedure}
-      </a>
+      </iframe>
     </div>
   ))
   const filteredAirEL = filteredAir.map(report => (
     <div key={report.id} className="knowledge__base__overview__default">
       <span>Test prodecure:</span>
-      <a 
-        href={report.testProcedure} 
-        target="_blank" 
-        rel="noopener noreferrer"
+      <iframe 
+        src={report.testProcedure} 
+        width="100%"
+        height="500px"
       >
-        {report.testProcedure}
-      </a>
+      </iframe>
     </div>
   ))
   const filteredElectricityEL = filteredElectricity.map(report => (
     <div key={report.id} className="knowledge__base__overview__default">
       <span>Test prodecure:</span>
-      <a 
-        href={report.testProcedure} 
-        target="_blank" 
-        rel="noopener noreferrer"
+      <iframe 
+        src={report.testProcedure} 
+        width="100%"
+        height="500px"
       >
-        {report.testProcedure}
-      </a>
+      </iframe>
     </div>
   ))
   const filteredSecurityEL = filteredSecurity.map(report => (
     <div key={report.id} className="knowledge__base__overview__default">
       <span>Test prodecure:</span>
-      <a 
-        href={report.testProcedure} 
-        target="_blank" 
-        rel="noopener noreferrer"
+      <iframe 
+        src={report.testProcedure} 
+        width="100%"
+        height="500px"
       >
-        {report.testProcedure}
-      </a>
+      </iframe>
     </div>
   ))
 
@@ -91,7 +86,7 @@ export default function KnowledgeBase({data}) {
       <BackButton />
       <h2>Kennisbank</h2>
       <div className="knowledge__base__button__container">
-        <h4>Test Procedures:</h4>
+        <h3>Test Procedures:</h3>
         <button 
           onClick={(e) => handleExpandTypeClick(e)} 
           className={expandType === "koeling" ?  `knowledge__base__button knowledge__base__button__expanded` : `knowledge__base__button`}
@@ -99,7 +94,7 @@ export default function KnowledgeBase({data}) {
             Koeling 
             <img 
               src={expandType === "koeling" ? chevronUp : chevronDown} 
-              alt="expand or close overview icon" 
+              alt={expandType === "koeling" ? "expand" : "close overview"}
             />
         </button>
         <div className="knowledge__base__overview__default__container">
@@ -115,7 +110,7 @@ export default function KnowledgeBase({data}) {
             Verwarming 
             <img 
               src={expandType === "verwarming" ? chevronUp : chevronDown} 
-              alt="expand or close overview icon" 
+              alt={expandType === "verwarming" ? "expand" : "close overview"}
             />
         </button>
         <div className="knowledge__base__overview__default__container">
@@ -131,7 +126,7 @@ export default function KnowledgeBase({data}) {
           Luchtverversing 
           <img 
             src={expandType === "luchtverversing" ? chevronUp : chevronDown} 
-            alt="expand or close overview icon" 
+            alt={expandType === "luchtverversing" ? "expand" : "close overview"}
           />
         </button>
         <div className="knowledge__base__overview__default__container">
@@ -147,7 +142,7 @@ export default function KnowledgeBase({data}) {
           Elektra 
           <img 
             src={expandType === "elektra" ? chevronUp : chevronDown} 
-            alt="expand or close overview icon" 
+            alt={expandType === "elektra" ? "expand" : "close overview"}
           />
         </button>
         <div className="knowledge__base__overview__default__container">
@@ -163,7 +158,7 @@ export default function KnowledgeBase({data}) {
           Beveiliging 
           <img 
             src={expandType === "beveiliging" ? chevronUp : chevronDown} 
-            alt="expand or close overview icon"
+            alt={expandType === "beveiliging" ? "expand" : "close overview"}
           />
         </button>
         <div className="knowledge__base__overview__default__container">

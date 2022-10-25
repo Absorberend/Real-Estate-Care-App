@@ -26,8 +26,8 @@
 .reports__modal__buttons__container button {
     position: relative;
     display: flex;
-    width: 5em;
-    height: 3.5em;
+    width: 4em;
+    height: 2em;
     padding: 0.5em 1em;
     gap: 0.5em;
     text-align: start;
@@ -37,18 +37,17 @@
     border: 1px solid black;
     border-radius: 5px;
     font-family: 'Quicksand', sans-serif;
-    font-weight: 600;
-    font-size: 0.55em;
+    font-weight: 800;
+    font-size: 1em;
+    text-shadow: 1px 1px black;
     cursor: pointer;
     overflow: hidden;
 }
 
 .reports__modal__buttons__container button:first-child {
     background-color: red;
-    font-size: 0.6em;
 }
 
 .reports__modal__buttons__container button:nth-child(2) {
-    background-color: var(--footer-bg-color);
-    font-size: 0.6em;
+    background-color: rgba(55,158,154,1);
 }

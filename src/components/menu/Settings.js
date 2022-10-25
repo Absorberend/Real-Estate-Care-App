@@ -57,12 +57,13 @@ export default function Settings({loggedInUser, onLogout}) {
 
         <div>
           <div>
-            <label>Inlog naam:</label>
+            <label htmlFor="settings__username">Inlog naam:</label>
           </div>
           <input 
             disabled 
             type="text" 
             name="username" 
+            id="settings__username"
             autoComplete="username" 
             value={username} 
             onChange={(e) => setUsername(e.target.value)} 
@@ -70,25 +71,27 @@ export default function Settings({loggedInUser, onLogout}) {
         </div>
         <div>
           <div>
-            <label>Volledige naam:</label>
+            <label htmlFor="settings__fullname">Volledige naam:</label>
           </div>
           <input 
             disabled 
             type="text" 
             name="username" 
+            id="settings__fullname"
             autoComplete="username" 
             value={userFullName} 
             onChange={(e) => setUserFullName(e.target.value)} 
           />
         </div>
 
-        <h4>Watchwoord wijzigen:</h4>
+        <h3>Watchwoord wijzigen:</h3>
         <div>
-          <label>Oude wachtwoord:</label>
+          <label htmlFor="settings__old__password">Oude wachtwoord:</label>
           <div>
             <input 
               type="password" 
-              name="oude__wachtwoord" 
+              name="oude__wachtwoord"
+              id="settings__old__password"
               size="42" 
               value={oldPassword} 
               onChange={(e) => setOldPassword(e.target.value)} 
@@ -98,11 +101,12 @@ export default function Settings({loggedInUser, onLogout}) {
         </div>
         
         <div>
-          <label>Nieuwe wachtwoord:</label>
+          <label htmlFor="settings__new__password">Nieuwe wachtwoord:</label>
           <div>
             <input 
               type="password" 
               name="nieuwe__wachtwoord" 
+              id="settings__new__password"
               size="42" 
               value={newPassword} 
               onChange={(e) => setNewPassword(e.target.value)} 

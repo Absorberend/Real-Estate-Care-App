@@ -10,10 +10,11 @@
     width: 100%;
     height: 100%;
     max-width: 50em;
-    padding: 0 0.5em 5em 0.5em;
+    padding: 0 1em 5em 1em;
     text-align: center;
     font-size: 1.2em;
     margin: 0 auto;
+    overflow: hidden;
 }
 
 .completed__reports__button__container {
@@ -33,14 +34,47 @@
 
 .completed__reports__legenda {
     display: flex;
+    position: relative;
     width: 100%;
-    padding: 0 2em 0 1em;
+    padding: 0.5em 1em;
+    gap: 0.5em;
     font-family: 'Rajdhani', sans-serif;
     justify-content: space-between;
+    align-items: center;
     font-weight: 600;
-    font-size: 1em;
+    font-size: 0.75em;
     text-align: start;
-    gap: 0.5em;
+}
+
+.completed__reports__legenda span:nth-child(1) {
+    width: 11em;
+}
+
+.completed__reports__legenda span:nth-child(2) {
+    width: 11em;
+}
+
+.completed__reports__legenda span:nth-child(3) {
+    width: 100%;
+    padding-inline-start: 0.5em;
+}
+
+.completed__reports__legenda span:nth-child(4) {
+    width: 100%;
+    padding-inline-start: 3em;
+}
+
+.completed__reports__legenda span:nth-child(5) {
+    max-width: 1em;
+}
+
+
+.completed__reports__button__hidden {
+    font-size: 1em;
+    font-family: 'Quicksand', sans-serif;
+    font-weight: 800;
+    width: 4em;
+    visibility: hidden;
 }
 
 .completed__reports__legenda__hidden {
@@ -48,12 +82,50 @@
     visibility: hidden;
 }
 
+.completed__reports__show__info {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    width: 10em;
+    top: 2em;
+    padding: 0.5em;
+    gap: 0;
+    margin: 0;
+    background-color: white;
+    border: 1px solid black;
+    border-radius: 0.5em;
+    box-shadow: 1px 1px 15px 1px rgba(0, 0, 0, 0.1);
+    z-index: 99;
+}
+
+.completed__reports__show__info p{
+    padding: 0;
+    margin: 0;
+}
+
+.completed__reports__legenda__info__button {
+    background-color: inherit;
+    border: none;
+    padding: 0.1em;
+    cursor: pointer;
+}
+
+.completed__reports__legenda__type {
+    display: flex;
+    height: 100%;
+    align-items: center;
+}
+
+.completed__reports__legenda__type img {
+    width: 1em;
+}
+
 .completed__reports__button {
     position: relative;
     display: flex;
     width: 100%;
     height: 3.5em;
-    padding: 0.5em 1em;
+    padding: 0.5em;
     gap: 0.5em;
     text-align: start;
     align-items: flex-start;
@@ -64,9 +136,17 @@
     border-radius: 5px;
     font-family: 'Quicksand', sans-serif;
     font-weight: 600;
-    font-size: 0.55em;
+    font-size: 0.7em;
     cursor: pointer;
     overflow: hidden;
+}
+
+.completed__reports__button span:nth-child(1) {
+    width: 10em;
+}
+
+.completed__reports__button span:nth-child(2) {
+    width: 10em;
 }
 
 .completed__reports__button span:nth-child(4),
@@ -77,7 +157,8 @@
 }
 
 .completed__reports__button span:nth-child(5) {
-    max-width: 2em;
+    max-width: 1em;
+    visibility: hidden;
 }
 
 .completed__reports__loading__error__messages {
@@ -151,20 +232,22 @@
     align-items: center;
     gap: 0.5em;
     width: 8em;
-    height: 4em;
+    height: 3.2em;
     padding: 0.5em;
     background-color: red;
     border: 1px solid black;
     border-radius: 5px;
     color: white;
     font-family: sans-serif;
-    font-weight: 400;
-    font-size: 0.6em;
+    font-weight: 800;
+    font-size: 1em;
+    text-shadow: 1px 1px black;
     cursor: pointer;
 }
 
 .overview__delete__button img {
     filter: invert(100%);
+    width: 2em;
 }
 
 .overview__edit__button {
@@ -172,20 +255,22 @@
     align-items: center;
     gap: 0.5em;
     width: 8em;
-    height: 4em;
+    height: 3.2em;
     padding: 0.5em;
-    background-color: var(--footer-bg-color);
+    background-color: rgba(55,158,154,1);
+    text-shadow: 1px 1px black;
     border: 1px solid black;
     border-radius: 5px;
     color: white;
     font-family: sans-serif;
-    font-weight: 400;
-    font-size: 0.6em;
+    font-weight: 800;
+    font-size: 1em;
     cursor: pointer;
 }
 
 .overview__edit__button img {
     filter: invert(100%);
+    width: 5em;
 }
 
 /* Delete button modal */
@@ -223,13 +308,14 @@
 .overview__container__delete__modal__button {
     width: 50%;
     color: white;
-    background-color: var(--footer-bg-color);
     padding: 0.5em;
     border: 1px solid black;
     border-radius: 5px;
     font-family: 'Quicksand', sans-serif;
-    font-weight: 600;
-    font-size: 0.55em;
+    font-weight: 800;
+    font-size: 0.7em;
+    background-color: rgba(55,158,154,1);
+    text-shadow: 1px 1px black;
     cursor: pointer;
     box-shadow: 1px 1px 15px 1px rgba(0, 0, 0, 0.1);
 }

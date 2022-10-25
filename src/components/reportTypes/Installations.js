@@ -55,18 +55,19 @@ export default function Installations({filteredReport, onReportsModalToggleClick
   return (
     <section className="reports__container__default">
       <BackButton onReportsModalToggleClick={onReportsModalToggleClick} />
-      <h4 className="reports__header__default">Technische installaties inspecteren</h4>
+      <h2 className="reports__header__default">Technische installaties inspecteren</h2>
       <form className="reports__inspection__form__default" onSubmit={(e) => onSubmit(e, doc)}>
         <div className="report__form__default">
           <div className="report__form__location__container__default">
-            <label>Straatnaam:</label>
-            <label>Postcode:</label>
-            <label>Plaats:</label>
+            <label htmlFor="installations__report__street__name">Straatnaam:</label>
+            <label htmlFor="installations__report__postal__code">Postcode:</label>
+            <label htmlFor="installations__report__city">Plaats:</label>
           </div>
           <div className="report__form__location__default">
             <input 
               type="text" 
               name="installations__report" 
+              id="installations__report__street__name" 
               size="25" 
               placeholder="Dummystraat 125"  
               value={streetName} 
@@ -76,6 +77,7 @@ export default function Installations({filteredReport, onReportsModalToggleClick
             <input 
               type="text" 
               name="installations__report" 
+              id="installations__report__postal__code" 
               size="25" 
               placeholder="1234AB" 
               value={postalCode} 
@@ -85,6 +87,7 @@ export default function Installations({filteredReport, onReportsModalToggleClick
             <input 
               type="text" 
               name="installations__report" 
+              id="installations__report__city" 
               size="25" 
               placeholder="Amsterdam" 
               value={city} 
@@ -94,19 +97,21 @@ export default function Installations({filteredReport, onReportsModalToggleClick
           </div>
         </div>
         <div className="report__form__default">
-          <label>Datum:</label>
+          <label htmlFor="installations__report__date">Datum:</label>
           <input 
             type="datetime-local" 
             name="installations__report" 
+            id="installations__report__date"
             value={date} 
             onChange={(e) => setDate(e.target.value)} 
             required 
           />
         </div>
         <div className="report__form__default">
-          <label>Soort installatie:</label>
+          <label htmlFor="installations__report__installation__type">Soort installatie:</label>
           <select 
-            name="installations__report" 
+            name="installations__report"
+            id="installations__report__installation__type" 
             value={installationType} 
             onChange={(e) => setInstallationType(e.target.value)} 
             className="report__select__default" 
@@ -121,20 +126,23 @@ export default function Installations({filteredReport, onReportsModalToggleClick
           </select>
         </div>
         <div className="report__form__description__default">
-          <label>Gemelde storing(en):</label>
+          <label htmlFor="installations__report__reported__malfunction">Gemelde storing(en):</label>
           <textarea 
             rows="4" 
-            cols="42" 
+            cols="42"
+            name="installations__report"
+            id="installations__report__reported__malfunction" 
             value={reportedMalfunction} 
             onChange={(e) => setReportedMalfunction(e.target.value)} 
           />
         </div>
         <div className="report__form__description__default">
-          <label>Testprocedure:</label>
+          <label htmlFor="installations__report__test__procedure">Testprocedure:</label>
           <div className="report__form__test__procedure__default">
             <input 
               type="text" 
               name="installations__report" 
+              id="installations__report__test__procedure"
               size="42" 
               placeholder="https://www.testprocedure.nl/elektra" 
               value={testProcedure} 
@@ -144,44 +152,49 @@ export default function Installations({filteredReport, onReportsModalToggleClick
         </div>
         <div className="report__form__default">
           <label>Goedgekeurd:</label>
-          <div className="report__form__radio__default__container">
+          <fieldset className="report__form__radio__default__container">
+            <legend>Goedgekeurd</legend>
             <div className="report__form__radio__default">
-              <label>Ja</label>
+              <label htmlFor="installations__report__approed__yes" >Ja</label>
               <input 
                 type="radio" 
                 name="installations__report" 
+                id="installations__report__approed__yes" 
                 checked={approved === "ja"} 
                 value="ja" 
                 onChange={(e) => setApproved(e.target.value)} 
               />
             </div>
             <div className="report__form__radio__default">
-              <label>Nee</label>
+              <label htmlFor="installations__report__approed__no">Nee</label>
               <input 
                 type="radio" 
                 name="installations__report" 
+                id="installations__report__approed__no" 
                 checked={approved === "nee"} 
                 value="nee" 
                 onChange={(e) => setApproved(e.target.value)} 
               />
             </div>
-          </div>
+          </fieldset>
         </div>
         <div className="report__form__description__default">
-          <label>Opmerkingen:</label>
+          <label htmlFor="installations__report__description">Opmerkingen:</label>
           <textarea 
             rows="4" 
             cols="42" 
+            name="installations__report"
+            id="installations__report__description"
             value={description} 
             onChange={(e) => setDescription(e.target.value)} 
           />
         </div>
         <div className="report__form__file__type__default">
-          <label>Foto toevoegen:</label>
+          <label htmlFor="installations__file__input">Foto toevoegen:</label>
           <input 
             type="file" 
             accept="image/*" 
-            id="report__file__input" 
+            id="installations__file__input" 
             onChange={(e) => uploadImage(e)} 
           />
           <span>

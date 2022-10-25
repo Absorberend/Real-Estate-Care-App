@@ -10,7 +10,7 @@ export default function LoginPage({onLoginSubmit, unAuthLogIn, authValue, onAuth
             <div className="login__page__logo__container">
                 <img src={logoBlack} alt="black logo" className="login__page__logo__img" />
                 <div className="login__page__logo__text__wrapper">
-                    <span className="login__page__logo__text">Real Estate Care</span>
+                    <h1 className="login__page__logo__text">Real Estate Care</h1>
                     <span className="login__page__logo__sub__text">Caring is in our nature</span>
                 </div>
             </div>

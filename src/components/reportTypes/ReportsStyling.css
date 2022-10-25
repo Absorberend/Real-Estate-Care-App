@@ -11,15 +11,25 @@
     font-weight: 500;
 }
 
+.reports__container__default fieldset {
+    border: none;
+    margin: 0;
+    padding: 0;
+}
+
+.reports__container__default legend {
+    display: none;
+}
+
 .reports__container__default input:focus,
 .reports__container__default textarea:focus,
 .reports__container__default select:focus { 
     outline: none !important;
-    border-color: var(--footer-bg-color);
+    border: 2px solid black;
 }
 
 .reports__header__default {
-    padding-block-end: 1em;
+    padding-block-end: 2em;
     margin: 0.25em auto;
 }
 
@@ -29,8 +39,12 @@
     width: 100%;
     flex-direction: column;
     gap: 2em;
-    max-width: 50em;
+    max-width: 30em;
     margin: 0 auto;
+}
+
+.reports__inspection__form__default label {
+    font-weight: 600;
 }
 
 .reports__inspection__form__default span {
@@ -39,14 +53,15 @@
 
 .reports__button__default {
     width: 15em;
-    padding: 0.1em;
+    padding: 0.25em;
     border: 1px solid black;
-    border-radius: 5px;
-    background-color: var(--footer-bg-color);
+    border-radius: 1em;
     box-shadow: 1px 1px 15px 1px rgba(0, 0, 0, 0.1);
     color: white;
     font-family: sans-serif;
-    font-weight: 400;
+    background-color: rgba(55,158,154,1);
+    font-weight: 800;
+    text-shadow: 1px 1px black;
     font-size: 1em;
     display: flex;
     justify-content: center;
@@ -56,7 +71,7 @@
 
 .reports__button__default:disabled,
 .reports__button__default[disabled] {
-    background-color: rgba(0,170,162,0.4)
+    background-color: rgba(0,170,162,0.4);
 }
 
 .report__form__default {
@@ -64,6 +79,15 @@
     width: 100%;
     height: 100%;
     justify-content: space-between;
+}
+
+
+.report__form__default label {
+    display: flex;
+    height: 100%;
+    width: 100%;
+    font-weight: 600;
+    align-self: center;
 }
 
 .report__form__location__default {
@@ -88,13 +112,14 @@
 
 input::file-selector-button,
 ::-webkit-file-upload-button {
-    background: var(--footer-bg-color);
+    background: rgba(55,158,154,1);
     color: white;
+    text-shadow: 1px 1px black;
     border: 1px solid black;
     border-radius: 10px;
     padding: 0.5em;
     font-family: sans-serif;
-    font-weight: 600;
+    font-weight: 800;
     font-size: 1em;
 }
 
@@ -111,6 +136,10 @@ input::file-selector-button,
     gap: 0.5em;
 }
 
+.report__form__file__type__default label {
+    font-weight: 600;
+}
+
 .report__form__test__procedure__default {
     display: flex;
     flex-direction: column;
@@ -122,6 +151,12 @@ input::file-selector-button,
     height: 100%;
     flex-direction: column;
     gap: 0.75em;
+}
+
+.report__form__location__container__default label {
+    padding-block-start: 0.5em;
+    height: 2.7em;
+    font-weight: 600;
 }
 
 .report__select__default {
@@ -137,4 +172,20 @@ input::file-selector-button,
     top: 0.2em;
     left: 6em;
 
+}
+
+input[type=text], input[type=datetime-local], input[type=password], select, textarea {
+    padding: 8px 10px;
+    display: inline-block;
+    border: 2px solid var(--footer-bg-color);
+    border-radius: 4px;
+    box-sizing: border-box;
+    background-color: white;
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 1em;
+    font-weight: 500;
+}
+
+input[type=datetime-local] {
+    min-width: 14.5em;
 }

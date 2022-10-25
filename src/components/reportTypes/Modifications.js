@@ -51,18 +51,19 @@ export default function Modifications({filteredReport, onReportsModalToggleClick
   return (
     <section className="reports__container__default">
       <BackButton onReportsModalToggleClick={onReportsModalToggleClick} />
-      <h4 className="reports__header__default">Modificaties inventariseren</h4>
+      <h2 className="reports__header__default">Modificaties inventariseren</h2>
       <form className="reports__inspection__form__default" onSubmit={(e) => onSubmit(e, doc)}>
         <div className="report__form__default">
           <div className="report__form__location__container__default">
-            <label>Straatnaam:</label>
-            <label>Postcode:</label>
-            <label>Plaats:</label>
+            <label htmlFor="modifications__report__street__name">Straatnaam:</label>
+            <label htmlFor="modifications__report__postal__code">Postcode:</label>
+            <label htmlFor="modifications__report__city">Plaats:</label>
           </div>
           <div className="report__form__location__default">
             <input 
               type="text" 
               name="modifications__report" 
+              id="modifications__report__street__name" 
               size="25" 
               placeholder="Dummystraat 125" 
               value={streetName} 
@@ -72,6 +73,7 @@ export default function Modifications({filteredReport, onReportsModalToggleClick
             <input 
               type="text" 
               name="modifications__report" 
+              id="modifications__report__postal__code" 
               size="25" 
               placeholder="1234AB" 
               value={postalCode} 
@@ -81,6 +83,7 @@ export default function Modifications({filteredReport, onReportsModalToggleClick
             <input 
               type="text" 
               name="modifications__report" 
+              id="modifications__report__city" 
               size="25" 
               placeholder="Amsterdam" 
               value={city} 
@@ -90,21 +93,22 @@ export default function Modifications({filteredReport, onReportsModalToggleClick
           </div>
         </div>
         <div className="report__form__default">
-          <label>Datum:</label>
+          <label htmlFor="modifications__report__date">Datum:</label>
           <input 
             type="datetime-local" 
             name="modifications__report" 
+            id="modifications__report__date" 
             value={date} 
             onChange={(e) => setDate(e.target.value)} 
             required 
           />
         </div>
         <div className="report__form__file__type__default">
-          <label>Gedocumenteerde modificaties:</label>
+          <label htmlFor="modifications__file__input">Gedocumenteerde modificaties:</label>
           <input 
             type="file" 
             accept="image/*" 
-            id="report__file__input" 
+            id="modifications__file__input" 
             onChange={(e) => uploadImage(e)} 
           />
           <span>
@@ -113,9 +117,10 @@ export default function Modifications({filteredReport, onReportsModalToggleClick
           </span>
         </div>
         <div className="report__form__default">
-          <label>Uitgevoerd door:</label>
+          <label htmlFor="modifications__report__carried__out__by">Uitgevoerd door:</label>
           <select 
             name="modifications__report" 
+            id="modifications__report__carried__out__by"
             value={carriedOutBy} 
             onChange={(e) => setCarriedOutBy(e.target.value)} 
             className="report__select__default" 
@@ -128,19 +133,21 @@ export default function Modifications({filteredReport, onReportsModalToggleClick
           </select>
         </div>
         <div className="report__form__description__default">
-          <label>Beschrijving modificaties:</label>
+          <label htmlFor="modifications__report__description__modification">Beschrijving modificaties:</label>
           <textarea 
             rows="4" 
             cols="42" 
             value={descriptionModification} 
+            id="modifications__report__description__modification"
             onChange={(e) => setDescriptionModification(e.target.value)} 
           />
         </div>
         <div className="report__form__default">
-          <label>Te ondernemen actie:</label>
+          <label htmlFor="modifications__report__action">Te ondernemen actie:</label>
           <select 
             name="modifications__report" 
             value={action} 
+            id="modifications__report__action"
             onChange={(e) => setAction(e.target.value)} 
             className="report__select__default" 
             required
@@ -153,10 +160,11 @@ export default function Modifications({filteredReport, onReportsModalToggleClick
           </select>
         </div>
         <div className="report__form__description__default">
-          <label>Opmerkingen:</label>
+          <label htmlFor="modifications__report__description">Opmerkingen:</label>
           <textarea 
             rows="4" 
             cols="42" 
+            id="modifications__report__description"
             value={description} 
             onChange={(e) => setDescription(e.target.value)} 
           />

@@ -1,10 +1,9 @@
 .avatar__container {
-    padding: 0;
+    padding: 0 0 1em 0;
     font-size: 1.2em;
     display: flex;
     flex-direction: column;
     align-items: center;
-    max-width: 50em;
     margin: 0 auto;
 }
 
@@ -30,8 +29,7 @@
 .avatar__form {
     display: flex;
     flex-direction: column;
-    max-width: 50em;
-    min-width: 14.4em;
+    min-width: 12em;
     gap: 1em;
     font-weight: 600;
     padding-block-start: 2em;

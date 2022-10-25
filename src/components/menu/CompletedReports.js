@@ -1,6 +1,6 @@
 import React, {useState} from "react"
 
-import { useLocation, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 import "./CompletedReports.css";
 import chrevronDown from "../../assets/chevron-down.svg";
@@ -9,13 +9,14 @@ import editIcon from "../../assets/edit.svg";
 import trashcanIcon from "../../assets/trash-x.svg";
 import useFetch from "../../hooks/useFetch";
 import BackButton from "../BackButton.js";
+import infoIcon from "../../assets/info-circle.svg";
 
 export default function CompletedReports({data, onCategoryDisplay}) {
+  const [showTypeInfo, setShowTypeInfo] = useState(false);
   const [filteredReport, setFilteredReport] = useState([]);
   const [deleteModal, setDeleteModal] = useState(false);
   const [didExpand, setDidExpand] = useState(false);
   const {isPending, error, del} = useFetch();
-  const locationURL = useLocation();
   const navigate = useNavigate();
   let viewReport = [];
  
@@ -37,6 +38,15 @@ export default function CompletedReports({data, onCategoryDisplay}) {
     setDeleteModal(prevDeleteModal => !prevDeleteModal);
   }
 
+  const handleTypeInfoClick = () => {
+    setShowTypeInfo(prevShowTypeInfo => !prevShowTypeInfo);
+  }
+
+  const dateOptions = {
+    month: '2-digit',
+    day: '2-digit'
+  }
+
   if (data) {
     viewReport = data.filter(report => report.completed === "true")
       .sort((a,b) => new Date(b.date) - new Date(a.date))
@@ -48,20 +58,20 @@ export default function CompletedReports({data, onCategoryDisplay}) {
               className={filteredReport[0]?.id === report.id ? `completed__reports__button expanded__overview__button` : `completed__reports__button`}
               onClick={() => handleReportClick(report.id)}
             >
-              <span>{`${new Date(report.date).toLocaleDateString()}`}</span>
+              <span>{`${new Date(report.date).toLocaleDateString('nl-NL', dateOptions)}`}</span>
               <span>{`${onCategoryDisplay(report.category)}`}</span>
               <span>{`${report.location.split(", ")[0]}`}</span>
               <span>{`${report.location.split(", ")[2]}`}</span>
               <span>
                 <img 
                   src={chrevronDown} 
-                  alt="expand report" 
+                  alt=""
                   className="completed__reports__button__icon__hidden"
                 />-
               </span>
               <img 
                 src={filteredReport[0]?.id === report.id ? chrevronUp : chrevronDown} 
-                alt="expand report" 
+                alt=""
                 className="completed__reports__button__icon" 
               />
             </button>
@@ -78,7 +88,7 @@ export default function CompletedReports({data, onCategoryDisplay}) {
                   {report?.modificationEncountered && (
                     <div className="completed__reports__overview__expanded__reports">
                       <span>Gedocumenteerde modificaties:</span>
-                      <img src={report.modificationEncountered} alt="gedocumenteerde modificatie" />
+                      <img src={report.modificationEncountered} alt="" />
                     </div>
                   )}
                   {report?.installationType && (
@@ -220,19 +230,30 @@ export default function CompletedReports({data, onCategoryDisplay}) {
 
   return (
     <>
-      {locationURL.pathname === "/CompletedReports" && (
-        <div className="completed__reports__back__button">
-          <BackButton />
-        </div>
-      )}
+      <div className="completed__reports__back__button">
+        <BackButton />
+      </div>
       <section className="completed__reports__container">
         <h2>Uitgevoerde rapportages</h2>
         <div className="completed__reports__legenda">
           <span>Datum</span>
-          <span>Type</span>
+          <span className="completed__reports__legenda__type">Type
+            <button onClick={handleTypeInfoClick} className="completed__reports__legenda__info__button">
+              <img src={infoIcon} alt="show type info" />
+            </button>
+          </span>
           <span>Straat</span>
           <span>Plaats</span>
+          <button className="completed__reports__button__hidden">hidden</button>
           <span className="completed__reports__legenda__hidden">Hidden</span>
+          {showTypeInfo && (
+            <div className="completed__reports__show__info">
+              <p>O = Onderhoud</p>
+              <p>S = Schade</p>
+              <p>M = Modificaties</p>
+              <p>I = Installaties </p>
+            </div>
+          )}
         </div>
         {isPending && (
           <div className="completed__reports__button__container completed__reports__loading__error__messages">Loading...</div>

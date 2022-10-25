@@ -49,18 +49,19 @@ export default function Maintenance({filteredReport, onReportsModalToggleClick, 
   return (
     <section className="reports__container__default">
       <BackButton onReportsModalToggleClick={onReportsModalToggleClick} />
-      <h4 className="reports__header__default">Achterstallig onderhoud opnemen</h4>
+      <h2 className="reports__header__default">Achterstallig onderhoud opnemen</h2>
       <form className="reports__inspection__form__default"  onSubmit={(e) => onSubmit(e, doc)}>
         <div className="report__form__default">
           <div className="report__form__location__container__default">
-            <label>Straatnaam:</label>
-            <label>Postcode:</label>
-            <label>Plaats:</label>
+            <label htmlFor="maintenance__report__street__name">Straatnaam:</label>
+            <label htmlFor="maintenance__report__postal__code">Postcode:</label>
+            <label htmlFor="maintenance__report__city">Plaats:</label>
           </div>
           <div className="report__form__location__default">
             <input 
               type="text" 
               name="maintenance__report" 
+              id="maintenance__report__street__name" 
               size="25" 
               placeholder="Dummystraat 125" 
               value={streetName} 
@@ -70,6 +71,7 @@ export default function Maintenance({filteredReport, onReportsModalToggleClick, 
             <input 
               type="text" 
               name="maintenance__report" 
+              id="maintenance__report__postal__code" 
               size="25" 
               placeholder="1234AB" 
               value={postalCode} 
@@ -79,6 +81,7 @@ export default function Maintenance({filteredReport, onReportsModalToggleClick, 
             <input 
               type="text" 
               name="maintenance__report" 
+              id="maintenance__report__city" 
               size="25" 
               placeholder="Amsterdam" 
               value={city} 
@@ -88,18 +91,20 @@ export default function Maintenance({filteredReport, onReportsModalToggleClick, 
           </div>
         </div>
         <div className="report__form__default">
-          <label>Datum:</label>
+          <label htmlFor="maintenance__report__date">Datum:</label>
           <input 
             type="datetime-local" 
             name="maintenance__report" 
+            id="maintenance__report__date"
             value={date} onChange={(e) => setDate(e.target.value)} 
             required />
         </div>
       
         <div className="report__form__default">
-          <label>Soort onderhoud:</label>
+          <label htmlFor="maintenance__report__maintenance__type">Soort onderhoud:</label>
           <select 
-            name="maintenance__report" 
+            name="maintenance__report"
+            id="maintenance__report__maintenance__type" 
             value={maintenanceType} 
             onChange={(e) => setMaintenanceType(e.target.value)} 
             className="report__select__default" 
@@ -115,33 +120,37 @@ export default function Maintenance({filteredReport, onReportsModalToggleClick, 
         </div>
         <div className="report__form__default">
           <label>Acute actie vereist:</label>
-          <div className="report__form__radio__default__container">
+          <fieldset className="report__form__radio__default__container">
+            <legend>Acute actie vereist</legend>
             <div className="report__form__radio__default">
-              <label>Ja</label>
+              <label htmlFor="maintenance__report__acute__action__yes">Ja</label>
               <input 
                 type="radio" 
-                name="maintenance__report__acute" 
+                name="maintenance__report" 
+                id="maintenance__report__acute__action__yes" 
                 checked={acuteActionRequired === "ja"} 
                 value="ja" 
                 onChange={(e) => setAcuteActionRequired(e.target.value)} 
               />
             </div>
             <div className="report__form__radio__default">
-              <label>Nee</label>
+              <label htmlFor="maintenance__report__acute__action__no">Nee</label>
               <input 
                 type="radio" 
-                name="maintenance__report__acute" 
+                name="maintenance__report" 
+                id="maintenance__report__acute__action__no" 
                 checked={acuteActionRequired === "nee"} 
                 value="nee" 
                 onChange={(e) => setAcuteActionRequired(e.target.value)} 
               />
             </div>
-          </div>
+          </fieldset>
         </div>
         <div className="report__form__default">
-          <label>Kostenindicatie:</label>
+          <label htmlFor="maintenance__report__cost__indication">Kostenindicatie:</label>
           <select 
             name="maintenance__report" 
+            id="maintenance__report__cost__indication" 
             value={costIndication} 
             onChange={(e) => setCostIndication(e.target.value)} 
             className="report__select__default" 
@@ -154,11 +163,11 @@ export default function Maintenance({filteredReport, onReportsModalToggleClick, 
           </select>
         </div>
         <div className="report__form__file__type__default">
-          <label>Foto toevoegen:</label>
+          <label htmlFor="maintenance__file__input">Foto toevoegen:</label>
           <input 
             type="file" 
             accept="image/*" 
-            id="report__file__input" 
+            id="maintenance__file__input" 
             onChange={(e) => uploadImage(e)} 
           />
           <span>

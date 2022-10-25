@@ -8,10 +8,11 @@
     width: 100%;
     height: 4.5em;
     z-index: 5;
+    font-size: 1.2em;
     align-items: center;
     justify-content: space-around;
     padding: 0.5em;
-    background-color: var(--footer-bg-color);
+    background-color: rgba(55,158,154,1);
     box-shadow: 1px -1px 15px 1px rgba(0, 0, 0, 0.1);
 }
 
@@ -42,6 +43,7 @@
 
 .active span, .active img {
     opacity: 1;
+    font-weight: 700;
 }
 
 .nav__reports__modal__container__wrapper {
