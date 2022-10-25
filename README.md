@@ -10,7 +10,7 @@ Ik liep er tegen aan dat queries naar Firebase Firestore een maximaal aantal KBâ
 
 &nbsp;  
 
-![My solution](../public/readme-design.png "My solution")
+![My solution](./public/readme-design.png "My solution")
 
 Bekijk de app via: https://realestatecare.netlify.app/#/
 
