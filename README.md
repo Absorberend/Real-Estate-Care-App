@@ -6,7 +6,7 @@ Het demo model wat ik in React gebouwd heb is een progressive web app (PWA). In 
 
 Ik heb door dit project geleerd hoe ik een PWA kan maken, hoe Firebase Firestore werkt, hoe ik images in base64 formaat uit kan wisselen met een database en hoe real time data werkt in combinatie met Firebase. Ook heb ik veel geleerd over accessibility (WCAG 2.1) en hoe ik een meer gebruiksvriendelijke app kan bouwen. 
 
-Ik liep er tegen aan dat queries naar Firebase Firestore een maximaal aantal KB’s mag zijn. Hierdoor is het mij onmogelijk gemaakt om in één query meerdere base64 images te sturen. Daardoor kan er in de app nu niet meer dan één foto toegevoegd worden. 
+Ik liep er tegen aan dat de queries naar Firebase Firestore een maximaal aantal KB’s mogen zijn. Hierdoor is het mij onmogelijk gemaakt om in één query meerdere base64 images te versturen. Daardoor kan er in de app nu niet meer dan één foto toegevoegd worden. Daarnaast heb ik ervoor gekozen om Firebase te gebruiken i.p.v. My JSON server (zie hierboven voor uitleg). Hierdoor heb ik dus geen JSON data file die de case qua structuur en inhoud reflecteert. Om die reden heb ik ervoor gekozen om als nog een JSON file toe te voegen (zie /src/firebase folder). Deze JSON file reflecteert de data van de deze opdracht zoals deze in Firebase Firestore ingevoerd is. Deze data wordt echter niet geüpdatet, dit is alleen voor de docent om te verifiëren dat de JSON file in orde is etc. In één van mijn projecten heb ik gebruik gemaakt van een custom useFetch Hook welke ik eventueel in had kunnen zetten voor het fetchen van data via My JSON server. Zie hier eventueel de link naar de Hook: https://github.com/Absorberend/REST-Countries-API/blob/master/src/Hooks/useFetch.js 
 
 &nbsp;  
 
