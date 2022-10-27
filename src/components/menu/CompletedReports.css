@@ -36,7 +36,7 @@
     display: flex;
     position: relative;
     width: 100%;
-    padding: 0.5em 1em;
+    padding: 0.25em 1em 0 1em;
     gap: 0.5em;
     font-family: 'Rajdhani', sans-serif;
     justify-content: space-between;
@@ -51,7 +51,7 @@
 }
 
 .completed__reports__legenda span:nth-child(2) {
-    width: 11em;
+    width: 10em;
 }
 
 .completed__reports__legenda span:nth-child(3) {
@@ -114,10 +114,12 @@
     display: flex;
     height: 100%;
     align-items: center;
+    gap: 0.1em;
 }
 
 .completed__reports__legenda__type img {
     width: 1em;
+    padding-block-start: 0.05em;
 }
 
 .completed__reports__button {

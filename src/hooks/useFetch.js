@@ -60,7 +60,7 @@ export default function useFetch() {
         try {
             projectFirestore.collection(collection).doc(id).update(body)
         } catch(err) {
-            console.error(err);
+            setError(err.message);
         }
     }
 
@@ -69,7 +69,7 @@ export default function useFetch() {
         try {
             projectFirestore.collection(collection).doc(id).delete()
         } catch(err) {
-            console.error(err);
+            setError(err.message);
         } 
     }
 
