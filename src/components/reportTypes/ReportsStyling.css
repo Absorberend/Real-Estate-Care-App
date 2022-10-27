@@ -169,7 +169,7 @@ input::file-selector-button,
 
 .reports__submit__button__loader {
     position: absolute;
-    top: 0.2em;
+    top: 0.5em;
     left: 6em;
 
 }

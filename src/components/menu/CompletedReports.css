@@ -232,10 +232,11 @@
 .overview__delete__button {
     display: flex;
     align-items: center;
-    gap: 0.5em;
+    justify-content: center;
+    gap: 0.25em;
     width: 8em;
     height: 3.2em;
-    padding: 0.5em;
+    padding: 0.2em;
     background-color: red;
     border: 1px solid black;
     border-radius: 5px;
@@ -255,10 +256,10 @@
 .overview__edit__button {
     display: flex;
     align-items: center;
-    gap: 0.5em;
+    justify-content: center;
     width: 8em;
     height: 3.2em;
-    padding: 0.5em;
+    padding: 0.2em;
     background-color: rgba(55,158,154,1);
     text-shadow: 1px 1px black;
     border: 1px solid black;
@@ -272,7 +273,7 @@
 
 .overview__edit__button img {
     filter: invert(100%);
-    width: 5em;
+    width: 3.5em;
 }
 
 /* Delete button modal */

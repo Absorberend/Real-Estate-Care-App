@@ -51,6 +51,7 @@
     background: inherit;
     align-items: center;
     justify-content: center;
+    cursor: pointer;
 }
 
 .top__bar__profile__img {
