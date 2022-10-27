@@ -110,7 +110,7 @@ export default function Maintenance({filteredReport, onReportsModalToggleClick, 
             className="report__select__default" 
             required
           >
-            <option value="default" disabled>Maak je keuze</option>
+            <option value="default" disabled>Maak uw keuze</option>
             <option value="schilderwerk">Schilderwerk</option>
             <option value="houtrot">Houtrot</option>
             <option value="elektra">Elektra</option>
@@ -156,7 +156,7 @@ export default function Maintenance({filteredReport, onReportsModalToggleClick, 
             className="report__select__default" 
             required
           >
-            <option value="default" disabled>Maak je keuze</option>
+            <option value="default" disabled>Maak uw keuze</option>
             <option value="0-500">&euro; 0-500</option>
             <option value="500-1500">&euro; 500-1.500</option>
             <option value="1500+">&euro; 1.500+</option>

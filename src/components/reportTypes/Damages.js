@@ -171,7 +171,7 @@ export default function Damages({filteredReport, onReportsModalToggleClick, load
             className="report__select__default" 
             required
           >
-            <option value="default" disabled>Maak je keuze</option>
+            <option value="default" disabled>Maak uw keuze</option>
             <option value="moedwillig">Moedwillig</option>
             <option value="slijtage">Slijtage</option>
             <option value="geweld">Geweld</option>

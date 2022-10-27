@@ -126,7 +126,7 @@ export default function Modifications({filteredReport, onReportsModalToggleClick
             className="report__select__default" 
             required
           >
-            <option value="default" disabled>Maak je keuze</option>
+            <option value="default" disabled>Maak uw keuze</option>
             <option value="huurder">Huurder</option>
             <option value="aannemer">Aannemer</option>
             <option value="onbekend">Onbekend</option>
@@ -152,7 +152,7 @@ export default function Modifications({filteredReport, onReportsModalToggleClick
             className="report__select__default" 
             required
           >
-            <option value="default" disabled>Maak je keuze</option>
+            <option value="default" disabled>Maak uw keuze</option>
             <option value="accepteren">Accepteren</option>
             <option value="keuren">Keuren</option>
             <option value="verwijderen">Verwijderen</option>
