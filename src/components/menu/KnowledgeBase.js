@@ -21,6 +21,7 @@ export default function KnowledgeBase({data}) {
       <span>Test prodecure:</span>
       <iframe 
         src={report.testProcedure} 
+        title={`${report.installationType} report ${report.id}`}
         width="100%"
         height="500px"
       >
@@ -32,6 +33,7 @@ export default function KnowledgeBase({data}) {
       <span>Test prodecure:</span>
       <iframe 
         src={report.testProcedure} 
+        title={`${report.installationType} report ${report.id}`}
         width="100%"
         height="500px"
       >
@@ -43,6 +45,7 @@ export default function KnowledgeBase({data}) {
       <span>Test prodecure:</span>
       <iframe 
         src={report.testProcedure} 
+        title={`${report.installationType} report ${report.id}`}
         width="100%"
         height="500px"
       >
@@ -54,6 +57,7 @@ export default function KnowledgeBase({data}) {
       <span>Test prodecure:</span>
       <iframe 
         src={report.testProcedure} 
+        title={`${report.installationType} report ${report.id}`}
         width="100%"
         height="500px"
       >
@@ -65,6 +69,7 @@ export default function KnowledgeBase({data}) {
       <span>Test prodecure:</span>
       <iframe 
         src={report.testProcedure} 
+        title={`${report.installationType} report ${report.id}`}
         width="100%"
         height="500px"
       >
